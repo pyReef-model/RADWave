@@ -1,0 +1,14 @@
+*.pyc
+
+__pycache__
+*.so*
+*checkpoint.ipynb
+*.png
+
+bioLEC-src/build/*
+bioLEC-src/dist/*
+
+*.egg
+
+.local
+.ipython
