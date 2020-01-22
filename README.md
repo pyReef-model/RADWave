@@ -8,8 +8,7 @@
 
 **RADWave** is a python package built to characterise *wave conditions* based on altimeter data.
 
-![bioLEC](https://github.com/Geodels/bioLEC/blob/master/Notebooks/images/intro.jpg?raw=true)
-
+![altimeter](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img2.jpg?raw=true)
 
 > **LEC** quantifies the closeness of a site to all others with **similar elevation**. It measures how easily a **species living in a given patch can spread and colonise other patches**. It is assumed to be **elevation-dependent** and the metric depends on how often a species adapted to a given elevation *needs to travel outside its optimal elevation range* when moving from its patch to any other in the landscape [Bertuzzo et al., 2016].
 
@@ -69,14 +68,12 @@ Launch the demonstration at [mybinder.org](https://mybinder.org/v2/gh/pyReef-mod
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pyReef-model/RADWave/binder?filepath=Notebooks%2F0-StartHere.ipynb)
 
 
-![LEC computation](https://github.com/Geodels/bioLEC/blob/master/src/bioLEC/Notebooks/images/boundcond.jpg?raw=true)
+![cyclone](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img1.jpg?raw=true)
 
 
 Another option will be to use the Docker container available through Kitematic **pyreefmodel/radwave**.
 
 [![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave)](https://hub.docker.com/r/pyreefmodel/radwave)
-
-![LEC computation](https://github.com/Geodels/bioLEC/blob/master/src/bioLEC/Notebooks/images/fig3.jpg?raw=true)
 
 ## Collaborations
 
