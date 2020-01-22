@@ -1,8 +1,8 @@
 # RADWave - _Wave analysis from Altimer data_
 
 
-[![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave?style=plastic)](https://hub.docker.com/r/pyreefmodel/radwave)
-[![PyPI](https://img.shields.io/pypi/v/RADWave?style=plastic)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest)
+[![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave)](https://hub.docker.com/r/pyreefmodel/radwave)
+[![PyPI](https://img.shields.io/pypi/v/RADWave)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest)
 
 **RADWave** documentation is found at [**radwave.readthedocs.io**](https://biolec.readthedocs.io/)
 
