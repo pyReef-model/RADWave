@@ -6,40 +6,36 @@ Installation
 Dependencies
 ------------
 
-You will need **Python 2.7 or 3.5+** and the following packages are required:
-`numpy <http://numpy.org>`_, `scipy <https://scipy.org>`_, `pandas <https://pandas.pydata.org/>`_, `mpi4py <https://pypi.org/project/mpi4py/>`_, `scikit-image <https://scikit-image.org/>`_, `pyevtk <https://pypi.org/project/pyevtk/>`_.
-
-.. note::
-  The `mpi4py` module has to be installed as a wrapper around an existing installation of **MPI**. The easiest way to install it is to use *anaconda*, which will install a compatible version of MPI and configure mpi4py to use it:
-  :code:`conda install -c conda-forge mpi4py`
+You will need a working **Python 3+** (though it will work with Python 2.7) and the following packages are required:
+`numpy <http://numpy.org>`_, `scipy <https://scipy.org>`_, `pandas <https://pandas.pydata.org/>`_, `scikit-image <https://scikit-image.org/>`_, `seaborn <https://seaborn.pydata.org>`_, `geopy <https://pypi.org/project/geopy/>`_, `cartopy <https://scitools.org.uk/cartopy/docs/latest/>`_, `netCDF4 <https://pypi.org/project/netCDF4/>`_, `shapely <https://pypi.org/project/Shapely/>`_, `pymannkendall <https://pypi.org/project/pymannkendall/>`_.
 
 The complete list of Dependencies is available in the **src/requirements.txt** file and looks like:
 
 .. code-block:: bash
 
-  numpy>=1.15
+  numpy>=1.15.0
   six>=1.11.0
   setuptools>=38.4.0
-  mpi4py>=3.0.0
-  pandas>=0.24
-  scipy>=1.2
-  scikit-image>=0.15
-  pyevtk>=1.1.1
+  pandas>=0.25
+  seaborn>=0.9
   matplotlib>=3.0
-  rasterio>=1.0.23
-
-
-Optionally, `lavavu <https://github.com/OKaluza/LavaVu>`_ is needed to support *interactive visualisation in Jupyter environment* (as shown in the notebook examples available from `binder <https://mybinder.org/v2/gh/Geodels/bioLEC/binder?filepath=Notebooks%2F0-StartHere.ipynb>`_).
+  geopy>=1.20
+  cartopy>=0.17
+  scipy>=1.3
+  netCDF4>=1.5.1
+  shapely>=1.6.4
+  scikit-image>=0.15
+  pymannkendall>=0
 
 Installing using pip
 --------------------
 
 |PyPI version shields.io|
 
-.. |PyPI version shields.io| image:: https://img.shields.io/pypi/v/bioLEC.svg
-   :target: https://pypi.org/project/bioLEC/
+.. |PyPI version shields.io| image:: https://img.shields.io/pypi/v/RADWave
+   :target: https://pypi.org/project/RADWave/
 
-You can install **RADWave** package using the latest stable release available via `pip <https://pypi.org/project/bioLEC/>`_!
+You can install **RADWave** package using the latest stable release available via `pip <https://pypi.org/project/RADWave/>`_!
 
 :code:`pip install RADWave`
 
@@ -52,7 +48,7 @@ If you need to install it for different python versions:
 
 To install the *development version*: **Clone the repository using**
 
-:code:`git clone https://github.com/Geodels/bioLEC.git`
+:code:`git clone https://github.com/pyReef-model/RADWave.git`
 
 Navigate into the RADWave directory and run
 
@@ -72,19 +68,19 @@ To install the docker image and test it is working:
 
 .. code-block:: bash
 
-  $ docker pull geodels/biolec:latest
-  $ docker run --rm geodels/biolec:latest help
+  $ docker pull pyreefmodel/radwave:latest
+  $ docker run --rm pyreefmodel/radwave:latest help
 
-On Linux, to build the dockerfile locally, we provide a script. First ensure you have checked out the source code from github and then run the script in the Docker directory. If you modify the dockerfile and want to push the image to make it publicly available, it will need to be retagged to upload somewhere other than the GEodels repository.
+On Linux, to build the dockerfile locally, we provide a script. First ensure you have checked out the source code from github and then run the script in the Docker directory. If you modify the dockerfile and want to push the image to make it publicly available, it will need to be retagged to upload somewhere other than the pyReef-model repository.
 
 .. code-block:: bash
 
-  $ git checkout https://github.com/Geodels/bioLEC.git
-  $ cd bioLEC
+  $ git checkout https://github.com/pyReef-model/RADWave.git
+  $ cd RADWave
   $ source Docker/build-dockerfile.sh
 
 .. note::
-  For non-Linux platforms, the use of `Docker Desktop for Mac`_ or `Docker Desktop for Windows`_ is recommended. The docker container to look for is named **geodels/biolec**!
+  For non-Linux platforms, the use of `Docker Desktop for Mac`_ or `Docker Desktop for Windows`_ is recommended. The docker container to look for is named **pyreefmodel/radwave**!
 
 .. _`Docker Desktop for Mac`: https://docs.docker.com/docker-for-mac/
 .. _`Docker Desktop for Windows`: https://docs.docker.com/docker-for-windows/
@@ -93,9 +89,9 @@ On Linux, to build the dockerfile locally, we provide a script. First ensure you
 Testing installation
 --------------------
 
-A test is provided to check the correct installation of the **bioLEC** package.If you've cloned the source into a directory :code:`bioLEC`, you may verify it as follows:
+A test is provided to check the correct installation of the **RADWave** package.If you've cloned the source into a directory :code:`RADWave`, you may verify it as follows:
 
-Navigate the the directory `src/tests` and run the tests.
+Navigate the directory `src/tests` and run the tests.
 
 .. code-block:: bash
 
@@ -108,5 +104,5 @@ The following result indicates success.
 
 .. code-block:: bash
 
-  $ Test bioLEC installation:: [####################] 100.0% DONE
-  $ All tests were successful...
+  $ Test RADWave installation:: [####################] 100.0% DONE
+  $ All tests passed - RADWave installation is completed !

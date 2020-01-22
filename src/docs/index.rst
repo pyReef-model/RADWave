@@ -3,26 +3,29 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-RADWave - *Landscape elevational connectivity*
+RADWave - *Wave analysis from Altimer data*
 =============================================
 
-.. image:: https://readthedocs.org/projects/biolec/badge/?version=latest
-  :target: https://biolec.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/radwave/badge/?version=latest
+  :target: https://radwave.readthedocs.io/en/latest/?badge=latest
   :alt: Documentation Status
 
-Understanding how biodiversity formed and evolved is a key challenge in evolutionary and ecological biology [Newbold2016]_. Despite a theoretical consensus on how best to measure biodiversity from a biological perspective (_i.e._ number of species, length of all branches on the tree of life of a species, and differences in allele and genotype frequencies within species) standardised and cost-effective methods for assessing it on a broad range of scales are lacking [Chiarucci2011]_. Estimates of some of theses landscape abiotic properties are already available through standard software such as ArcGIS or QGIS and in more specific mountainous landscape focussed packages such as LSD Topo Tools or pyBadlands.
 
-.. image:: ../bioLEC/Notebooks/images/intro.jpg
+**Satellite radar altimeters** can be used to determine significant wave height and wind speed [Young2011]_. Since the first launch of the **GEOSAT** (GEOdetic SATellite) altimeter in 1985, there has been almost continuous data collection. From these measurements one can calculate wave conditions namely wave height, period and power [Young2018]_. Analysis of this long-term, high resolution spatio-temporal record brings new insights into inter-annual, seasonal and decadal variations of regional wave climates.
+
+.. image:: ../RADWave/Notebooks/images/img2.jpg
    :scale: 40 %
-   :alt: LEC computation
+   :alt: Altimeter analysis
    :align: center
 
-In 2016, a new metric called the Landscape Elevational Connectivity (LEC) was proposed to estimate biodiversity in mountainous landscape [Bertuzzo2016]_. It efficiently measures the landscape resistance to migration and is able to account for up to 70% of biodiversity predicted by meta-community models [Bertuzzo2016]_.
+**RADWave** is Python package that provides a mechanism to access altimeter datasets through web-enabled data services (THREDDS). The package capabilities are illustrated based on the the Australian Ocean Data Network ([**AODN**](https://portal.aodn.org.au) database that spans from 1985-present and that has already been calibrated and validated by [Ribal2019]_. **RADWave** allows to query over a range of spatial and temporal scales altimeter parameters in specific geographical regions and subsequently calculates significant wave heights, periods, group velocities, average wave energy densities and wave energy fluxes.
 
-**bioLEC** is a Python package designed to quickly calculate for any mountainous landscape surface and species niche width its associated LEC index. From an elevational fitness perspective, all migratory paths on a flat landscape are equal. This is not the case on a complex landscape where migration can only occur along a network of corridors providing species with their elevational requirements. Hence, predicting how species will disperse across a landscape requires a model of migration that takes into account the physical properties of the landscape, the species fitness range, as well as evolving environmental conditions.
+.. hint::
+  **RADWave** can be used to easily calculate past wave conditions and infers long term wave climate variability, providing new insights on wave modal conditions, seasonal changes, long-term trends and associated modulation by climate oscillations.
+
 
 .. note::
-  **LEC** quantifies the closeness of a site to all others with **similar elevation**. It measures how easily a **species living in a given patch can spread and colonise other patches**. It is assumed to be **elevation-dependent** and the metric depends on how often a species adapted to a given elevation *needs to travel outside its optimal elevation range* when moving from its patch to any other in the landscape. **bioLEC** package can be used in serial or parallel to evaluate biodiversity patterns of a given landscape. It is an efficient and easy-to-use tool to quickly assess the capacity of landscape to support biodiversity and to predict species dispersal across mountainous landscapes.
+  Designed for researchers and industry partners focusing on offshore wave conditions globally, **RADWave** enhances the ease of access and analysis of altimeter data.
 
 Contents
 --------
@@ -42,11 +45,11 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. [Newbold2016] T. Newbold, et al. -
-	Has land use pushed terrestrial biodiversity beyond the planetary boundary? A global assessment. Science, 353(6296) 288-291, `DOI: 10.1126/science.aaf2201`_, 2016.
+.. [Ribal2019] Ribal, A. & Young, I. R. -
+    33 years of globally calibrated wave height and wind speed data based on altimeter observations. **Scientific Data** 6(77), p.100, 2019.
 
-.. [Chiarucci2011] A. Chiarucci, G. Bacaro, & S. Scheiner -
-    Old and new challenges in using species diversity for assessing biodiversity. Phil. Trans. R. Soc. B  Biol Sci., 366(1576) 2426-2437, `DOI: 10.1098/rstb.2011.0065`_,2011.
+.. [Young2011] Young, I. R., Zieger, S. & Babanin, A. V. -
+    Global trends in wind speed and wave height. **Science** 332(6028), p451–455, 2011.
 
-.. [Bertuzzo2016] E. Bertuzzo, F. Carrara, L. Mari, F. Altermatt, I. Rodriguez-Iturbe & A. Rinaldo -
-  Geomorphic controls on species richness. PNAS, 113(7) 1737-1742, `DOI: 10.1073/pnas.1518922113`_, 2016.
+.. [Young2018] Young, I. R. & Donelan, M. -
+    On the determination of global ocean wind and wave climate from satellite observations. **Remote Sensing of Environment** 215, 228–241, 2018.
