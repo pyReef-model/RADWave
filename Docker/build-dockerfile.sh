@@ -2,6 +2,9 @@
 
 # Don't forget to increment the version number if you want to keep the old stuff
 # Run from the project top folder
+# docker login --username=yourhubusername --password=yourpassword
+# ./Docker/build-dockerfile.sh
+# sudo docker push pyreefmodel/radwave:latest
 
 FROM_IMG="pyreefmodel/radwave-bundle:latest"
 IMAGENAME=pyreefmodel/radwave:latest
