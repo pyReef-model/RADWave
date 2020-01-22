@@ -26,7 +26,7 @@ RUN ipython3 -c 'import RADWave; RADWave.documentation.install_documentation(pat
 ADD  --chown=jovyan:jovyan Notebooks/0-StartHere.ipynb Notebooks/0-StartHere.ipynb
 
 
-RUN python3 -m pip install --no-cache-dir --upgrade nose 
+RUN python3 -m pip install --no-cache-dir --upgrade nose \
    jupyterhub 
 
 RUN mkdir -p /usr/local/files && chown -R jovyan:jovyan /usr/local/files
