@@ -5,7 +5,6 @@ include COPYING.LESSER
 include RADWave/__init__.py
 include RADWave/altiwave.py
 include RADWave/documentation.py
-include RADWave/Notebooks/notebooks/*.py
 include RADWave/Notebooks/notebooks/*.ipynb
 include RADWave/Notebooks/images/*
 include RADWave/Notebooks/dataset/*

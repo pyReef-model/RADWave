@@ -73,17 +73,14 @@ RUN python3 -m pip install --no-cache-dir setuptools wheel && \
     pandas \
     scikit-image \
     pymannkendall \
-    cmocean \
-    USE_SETUPCFG=0 \
-    HDF5_INCDIR=/usr/include/hdf5/serial \
+    cmocean
+
+RUN HDF5_INCDIR=/usr/include/hdf5/serial \
     HDF5_LIBDIR=/usr/lib/x86_64-linux-gnu/hdf5/serial \
     python3 -m pip install --no-cache-dir git+https://github.com/Unidata/netcdf4-python
 
-RUN apt-get update -qq && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends openmpi-bin libopenmpi-dev
-
 RUN python3 -m pip install --no-cache-dir \
-    RADWave
+    RADWave==0.0.1
 
 # Jovyan user / group
 

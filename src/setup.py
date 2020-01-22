@@ -1,3 +1,13 @@
+"""
+Creating PIPY package instruction:
+
+python3 -m pip install --user --upgrade setuptools wheel
+python3 setup.py sdist
+python3 -m pip install --user --upgrade twine
+twine check dist/*
+twine upload dist/*
+"""
+
 from setuptools import setup, find_packages
 from numpy.distutils.core import setup, Extension
 from os import path
