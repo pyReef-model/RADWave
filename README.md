@@ -109,12 +109,8 @@ This program is free software: you can redistribute it and/or modify it under th
 # Altimeter waves
 This repository shows how to calculate short term wave conditions and long term wave climate statistics from satellite radar altimeters. It can also be used to determine wind conditions, however wind is not explicitly discussed in this project. Altimeters are widely established as an accurate remote sensing technique, and are particularly advantageous for remote areas, and locations with no long term monitoring of waves (Young et al. 2011). 
 
-# Installation
-
-RADWave accesses altimeter data through the Australian Ocean Data Network ([AODN]) (https://portal.aodn.org.au/search). This dataset was compiled and extensively calibrated by Ribal and Young (2019). It is regularly updated using altimeter data from 1985-present, and can be downloaded in 1° x 1° URL files. Notebook1 uses a txt file (named IMOSURLs.txt) that directly extracts data from this portal. To access altimeter data for the area of interest, navigate to the AODN data portal and select IMOS-SRS Surface Waves Sub-Facility - altimeter wave/wind data. Determine the spatial and temporal bounding boxes for area of interest. Press next, and select "Download as...", selecting "List of URLs". Save and rename this file as "IMOSURLs.txt", which will be used in Notebook1-Define Area.
-
-
 # References
-Ribal, A. and Young, I.R., 2019. 33 years of globally calibrated wave height and wind speed data based on altimeter observations. *Scientific Data* 6(77), p.100.
 
-Young, I. R., Zieger, S. and Babanin, A. V., 2011. Global trends in wind speed and wave height. *Science 332*(6028), p451–455.
+  1. Ribal, A. and Young, I.R., 2019. 33 years of globally calibrated wave height and wind speed data based on altimeter observations. **Scientific Data** 6(77), p.100.
+
+  1. Young, I. R., Zieger, S. and Babanin, A. V., 2011. Global trends in wind speed and wave height. **Science** 332(6028), p451–455.
