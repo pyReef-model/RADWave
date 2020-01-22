@@ -4,13 +4,13 @@
 [![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave)](https://hub.docker.com/r/pyreefmodel/radwave)
 [![PyPI](https://img.shields.io/pypi/v/RADWave)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest)
 
-**RADWave** documentation is found at [**radwave.readthedocs.io**](https://biolec.readthedocs.io/)
+**RADWave** documentation is found at [**radwave.readthedocs.io**](https://radwave.readthedocs.io/)
 
 **RADWave** is a python package built to characterise *wave conditions* based on altimeter data.
 
 ![altimeter](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img2.jpg?raw=true)
 
-> **Altimeters** are widely established as an accurate remote sensing technique, and are particularly advantageous for remote areas, and locations with no long term monitoring of waves [Young et al., 2011]. 
+> **Altimeters** are widely established as an accurate remote sensing technique, and are particularly advantageous for remote areas, and locations with no long term monitoring of waves [Young et al., 2011].
 
 ## Installation
 
@@ -100,7 +100,7 @@ This program is free software: you can redistribute it and/or modify it under th
 
   > This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
   You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html.
-  
+
 
 ### References
 
