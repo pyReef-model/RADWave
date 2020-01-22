@@ -1,0 +1,10 @@
+*.DS_Store
+*.pyc
+build
+dist
+RADWave.egg-info
+src/docs/_build
+Notebooks/.ipynb_checkpoints/*
+src/RADWave/Notebooks/.ipynb_checkpoints/*
+src/RADWave/Notebooks/notebooks/.ipynb_checkpoints/*
+Notebooks/notebooks/.ipynb_checkpoints/*.ipynb
