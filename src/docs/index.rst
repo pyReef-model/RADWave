@@ -14,7 +14,7 @@ RADWave - *Wave analysis from Altimer data*
 **Satellite radar altimeters** can be used to determine significant wave height and wind speed [Young2011]_. Since the first launch of the **GEOSAT** (GEOdetic SATellite) altimeter in 1985, there has been almost continuous data collection. From these measurements one can calculate wave conditions namely wave height, period and power [Young2018]_. Analysis of this long-term, high resolution spatio-temporal record brings new insights into inter-annual, seasonal and decadal variations of regional wave climates.
 
 .. image:: ../RADWave/Notebooks/images/img2.jpg
-   :scale: 20 %
+   :scale: 10 %
    :alt: Altimeter analysis
    :align: center
 
