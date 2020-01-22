@@ -8,10 +8,16 @@
 
 **RADWave** is a python package built to characterise *wave conditions* based on altimeter data.
 
+> **Satellite radar altimeters** can be used to determine significant wave height and wind speed [Young et al., 2011]. Since the first launch of the **GEOSAT** (GEOdetic SATellite) altimeter in 1985, there has been almost continuous data collection. From these measurements one can calculate wave conditions namely wave height, period and power [Young and Donelan, 2018]. Analysis of this long-term, high resolution spatio-temporal record brings new insights into inter-annual, seasonal and decadal variations of regional wave climates. 
+
 ![altimeter](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img2.jpg?raw=true)
 
-> **Altimeters** are widely established as an accurate remote sensing technique, and are particularly advantageous for remote areas, and locations with no long term monitoring of waves [Young et al., 2011].
+**RADWave** is Python package that provides a mechanism to access altimeter datasets through web-enabled data services (THREDDS). The package capabilities are illustrated based on the the Australian Ocean Data Network ([**AODN**](https://portal.aodn.org.au) database that spans from 1985-present and that has already been calibrated and validated by [Ribal and Young, 2019]. **RADWave** allows to query over a range of spatial and temporal scales altimeter parameters in specific geographical regions and subsequently calculates significant wave heights, periods, group velocities, average wave energy densities and wave energy fluxes.  
 
+**RADWave** can be used to easely calculate past wave conditions and infers long term wave climate variability, providing new insights on wave modal conditions, seasonal changes, long-term trends and associated modulation by climate oscillations. 
+
+Designed for researchers and industry partners focusing on offshore wave conditions globally, **RADWave** enhances the ease of access and analysis of altimeter data.
+  
 ## Installation
 
 ### Dependencies
@@ -104,6 +110,9 @@ This program is free software: you can redistribute it and/or modify it under th
 
 ### References
 
-  1. Ribal, A. and Young, I.R., 2019. 33 years of globally calibrated wave height and wind speed data based on altimeter observations. **Scientific Data** 6(77), p.100.
+  1. Ribal, A. and Young, I. R., 2019. 33 years of globally calibrated wave height and wind speed data based on altimeter observations. **Scientific Data** 6(77), p.100.
 
   1. Young, I. R., Zieger, S. and Babanin, A. V., 2011. Global trends in wind speed and wave height. **Science** 332(6028), p451–455.
+  
+  1. Young, I. R. and Donelan, M., 2018. On the determination of global ocean wind and wave climate from satellite observations. **Remote Sensing of Environment** 215, 228–241.
+  
