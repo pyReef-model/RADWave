@@ -1,4 +1,20 @@
-# Altimeter_waves
+# RADWave - _Wave analysis from Altimer data_
+
+
+[![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave?style=plastic)](https://hub.docker.com/r/pyreefmodel/radwave)
+[![PyPI](https://img.shields.io/pypi/v/RADWave?style=plastic)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest)
+
+**RADWave** documentation is found at [**radwave.readthedocs.io**](https://biolec.readthedocs.io/)
+
+**RADWave** is a python package built to characterise *wave conditions* based on altimeter data.
+
+![bioLEC](https://github.com/Geodels/bioLEC/blob/master/Notebooks/images/intro.jpg?raw=true)
+
+
+**LEC** quantifies the closeness of a site to all others with **similar elevation**. It measures how easily a **species living in a given patch can spread and colonise other patches**. It is assumed to be **elevation-dependent** and the metric depends on how often a species adapted to a given elevation *needs to travel outside its optimal elevation range* when moving from its patch to any other in the landscape [Bertuzzo et al., 2016].
+
+
+# Altimeter waves
 This repository shows how to calculate short term wave conditions and long term wave climate statistics from satellite radar altimeters. It can also be used to determine wind conditions, however wind is not explicitly discussed in this project. Altimeters are widely established as an accurate remote sensing technique, and are particularly advantageous for remote areas, and locations with no long term monitoring of waves (Young et al. 2011). 
 
 # Installation
