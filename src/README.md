@@ -1,5 +1,5 @@
 # Altimeter_waves
-This repository shows how to calculate short term wave conditions and long term wave climate statistics from satellite radar altimeters. It can also be used to determine wind conditions, however wind is not explicitly discussed in this project. Altimeters are widely established as an accurate remote sensing technique, and are particularly advantageous for remote areas, and locations with no long term monitoring of waves (Young et al. 2011). 
+This repository shows how to calculate short term wave conditions and long term wave climate statistics from satellite radar altimeters. It can also be used to determine wind conditions, however wind is not explicitly discussed in this project. Altimeters are widely established as an accurate remote sensing technique, and are particularly advantageous for remote areas, and locations with no long term monitoring of waves (Young et al. 2011).
 
 # Installation
 
@@ -20,7 +20,7 @@ Python3 or later is required, in addition to the following packages:
 
 
 # Collaborations and issues
-Please let us know if you would like to contribute - can be anything from code, notebooks or examples, they all further understanding and development of RADWave. 
+Please let us know if you would like to contribute - can be anything from code, notebooks or examples, they all further understanding and development of RADWave.
 
 To contribute please fork the project make your changes and submit a pull request. We will do our best to work through any issues with you and get your code merged into the main branch.
 
@@ -31,7 +31,7 @@ If you found a bug or have any questions please email Tristan Salles at tristan.
 # License
 
 
-
+https://mybinder.org/v2/gh/pyReef-model/RADWave/binder?filepath=Notebooks%2F0-StartHere.ipynb
 
 
 # References

@@ -15,7 +15,7 @@ RUN apt-get update -qq && \
     gettext && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-### bioLEC - Notebooks
+### RADWave - Notebooks
 
 ENV MODULE_DIR="src"
 ADD --chown=jovyan:jovyan $MODULE_DIR $MODULE_DIR
