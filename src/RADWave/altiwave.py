@@ -604,7 +604,7 @@ class waveAnalysis(object):
             wind speed (U) and significant wave height (H). This method has a high accuracy of estimating wave period (T) in both wind
             and swell-generated seas (root mean square error = 0.76 s).
 
-            Remya et al., 2010: Altimeter-derived ocean wave period using genetic algorithm - IEEE Geoscience and Remote Sensing Letters 8(2), 354–358. 61, 62, 100.
+            Remya et al., 2010: Altimeter-derived ocean wave period using genetic algorithm - IEEE Geoscience and Remote Sensing Letters 8(2), 354–358.
 
         Args:
             H (numpy array): significant wave height in metres
