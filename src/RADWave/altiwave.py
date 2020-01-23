@@ -220,7 +220,7 @@ class waveAnalysis(object):
         """
         From the list of OPeNDAP data URL’s this function extracts the altimeter data information.
 
-        The function can take some times to execute depending on the number of files to load and the size of the dataset to interogate.
+        The function can take some times to execute depending on the number of files to load and the size of the dataset to query.
 
         Todo:
             Here we use default NetCDF variables keys based on the IMOS AODN dataset: 'LATITUDE'/'LONGITUDE'/'WSPD_CAL'...

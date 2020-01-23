@@ -41,51 +41,52 @@ This global dataset has been compiled and extensively calibrated by [Ribal2019]_
     <iframe width="100%" height="550" src="https://www.youtube.com/embed/MpwkkWzqUHQ?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-.. important:
+.. important::
     **RADWave** uses the file containing the *list of URLs* to query via THREDDS the remote data. This operation can take several minutes and when looking at a large region it is recommended to divide the analyse in smaller regions and download a series of URLs text file instead of the entire domain directly.
 
+A series of URLs text files is provided with the notebook `examples <https://github.com/pyReef-model/RADWave/tree/master/Notebooks/dataset>`_.
 
 Computing wave parameters
 *****
 
+Once the list of :code:`NETCDF` data file has been saved on disk, you will be able to load it by initialising **RADWave** main Python class called :code:`waveAnalysis`.
+For a detail overview of the options available in this class, the user is invited to look at the `waveAnalysis API`_.
 
-* as a :code:`CSV` file (argument: :code:`filename`) containing 3 columns for X, Y and Z respectively with no header and ordered along the X axis first (as illustrated in the top figure) and shown below:
+.. code-block:: python
+    import RADWave as rwave
 
-  .. math::
-    \begin{smallmatrix}
-     x_0 & y_0 & z_{0,0} \\
-     x_1 & y_0 & z_{1,0} \\
-     \vdots & \vdots & \vdots \\
-     x_m & y_0 & z_{m,0} \\
-     x_0 & y_1 & z_{0,1} \\
-     \vdots & \vdots & \vdots \\
-     x_m & y_n & z_{m,n} \\
-     \end{smallmatrix}
-
-* as a 3D numpy array (argument: :code:`XYZ`) containing the X, Y and Z coordinates here again ordered along the X axis first (as above)
-* or as a 2D numpy array (argument: :code:`Z`) containing the elevation matrix (example provided below), in this case the :code:`dx` argument is also required
-
-  .. math::
-    \begin{smallmatrix}
-     z_{0,0} & z_{1,0} & \cdots & z_{m-1,0} & z_{m,0} \\
-     \vdots & \vdots & \vdots & \vdots & \vdots \\
-     z_{0,k} & z_{1,k} & \cdots & z_{m-1,k} & z_{m,k} \\
-     \vdots & \vdots & \vdots & \vdots & \vdots \\
-     z_{0,n} & z_{1,n} & \cdots & z_{m-1,n} & z_{m,n} \\
-     \end{smallmatrix}
-
-In addition to the elevation field, the user could specify the **boundary conditions** used to compute the LEC. Two options are available: :code:`periodic` or :code:`symmetric` boundaries. The way these two boundaries are implemented in **bioLEC** is illustrated in the figure below as well as the impact on the LEC calculation.
+    wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOSURLs.txt', bbox=[152.0,155.0,-36.0,-34.0],
+                    stime=[1985,1,1], etime=[2018,12,31])
 
 
-Finally the LEC solution requires the declaration of the **species niche width** defined by the variable :code:`sigma` in the following equation (look in the `What is LEC? section <https://biolec.readthedocs.io/en/latest/method.html>`_ for more information):
 
-.. math::
-   -\ln C_{ji} = \frac{1}{2\sigma^2} \min_{p  \in \{j\rightarrow i\}} \sum_{r=2}^L (z_{k_r}-z_j)^2
+.. note::
+  In cases where one want to query altimeter data along a specific path such as a cyclone track, it will be necessary to provide a second file with the recorded track geographical coordinates and associated time. The file will be a :code:`CSV` file with in the header the following keyword names :code:`lon`, :code:`lat` & :code:`datetime`. An example of such a file is provided with the notebooks based on dataset exported from the Bureau of Meteorology (`BOM <http://www.bom.gov.au/cyclone/history/tracks/>`). In such cases, the call to :code:`waveAnalysis` will take the form:
 
-The above figure from [Bertuzzo16]_ shows the habitat maps as a function of elevation for a real fluvial landscape when considering the fitness of three different species as a function of elevation. The fitness maps of the three species are shown on the bottom panels. In **bioLEC** two options are possible:
+.. code-block:: python
+    import RADWave as rwave
 
-* either the user specifies a species niche width percentage based on elevation extent with the parameter :code:`sigmap`
-* or a species niche fixed width values with the declaration of the parameter :code:`sigmav`
+    wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOSURLs.txt', bbox=[152.0,155.0,-36.0,-34.0],
+                    stime=[1985,1,1], etime=[2018,12,31])
+
+After class initialisation querying the actual dataset is realised by calling the :code:`processingAltimeterData` function (option available in the `processingAltimeterData API`_)
+
+.. code-block:: python
+    wa.processingAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
+
+The function can take some times to execute depending on the number of :code:`NETCDF` files to load and the size of the dataset to query.
+
+.. note::
+    This function relies mostly on Pandas (library) and writes the processed dataset to file that can be later used to access more efficiently altimeter information.
+
+In case where the *processingAltimeterData* function has already been executed, one can load directly the processed data from the created CSV file in a more efficient way by running the :code:`readingAltimeterData` function as follow:
+
+
+.. code-block:: python
+    wa.readingAltimeterData(saveCSV = 'altimeterData.csv')
+
+
+
 
 Outputs
 *******
@@ -156,7 +157,10 @@ Another straightforward installation that again does not depend on specific comp
 .. _`Docker Desktop for Windows`: https://docs.docker.com/docker-for-windows/
 
 
-.. _`API landscapeConnectivity`: https://biolec.readthedocs.io/en/latest/bioLEC.html#bioLEC.LEC.landscapeConnectivity
+.. _`waveAnalysis API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis
+.. _`processingAltimeterData API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.processingAltimeterData
+
+
 .. _`API compute LEC`: https://biolec.readthedocs.io/en/latest/bioLEC.html#bioLEC.LEC.landscapeConnectivity.computeLEC
 .. _`API write LEC`: https://biolec.readthedocs.io/en/latest/_modules/bioLEC/LEC.html#landscapeConnectivity.writeLEC
 
