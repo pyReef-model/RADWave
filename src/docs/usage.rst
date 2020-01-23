@@ -46,33 +46,38 @@ This global dataset has been compiled and extensively calibrated by [Ribal2019]_
 
 A series of URLs text files is provided with the notebook `examples <https://github.com/pyReef-model/RADWave/tree/master/Notebooks/dataset>`_.
 
-Computing wave parameters
+Loading altimeter parameters
 *****
 
 Once the list of :code:`NETCDF` data file has been saved on disk, you will be able to load it by initialising **RADWave** main Python class called :code:`waveAnalysis`.
 For a detail overview of the options available in this class, the user is invited to look at the `waveAnalysis API`_.
 
 .. code-block:: python
-    import RADWave as rwave
 
-    wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOSURLs.txt', bbox=[152.0,155.0,-36.0,-34.0],
-                    stime=[1985,1,1], etime=[2018,12,31])
+  import RADWave as rwave
+
+  wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOSURLs.txt', bbox=[152.0,155.0,-36.0,-34.0],
+                          stime=[1985,1,1], etime=[2018,12,31])
 
 
 
 .. note::
-  In cases where one want to query altimeter data along a specific path such as a cyclone track, it will be necessary to provide a second file with the recorded track geographical coordinates and associated time. The file will be a :code:`CSV` file with in the header the following keyword names :code:`lon`, :code:`lat` & :code:`datetime`. An example of such a file is provided with the notebooks based on dataset exported from the Bureau of Meteorology (`BOM <http://www.bom.gov.au/cyclone/history/tracks/>`). In such cases, the call to :code:`waveAnalysis` will take the form:
+  In cases where one want to query altimeter data along a specific path such as a cyclone track, it will be necessary to provide a second file with the recorded track geographical coordinates and associated time. The file will be a :code:`CSV` file with in the header the following keyword names :code:`lon`, :code:`lat` & :code:`datetime`. An example of such a file is provided with the notebooks based on dataset exported from the Bureau of Meteorology (`BOM <http://www.bom.gov.au/cyclone/history/tracks/>`_). In such cases, the call to :code:`waveAnalysis` will take the form:
 
 .. code-block:: python
-    import RADWave as rwave
 
-    wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOSURLs.txt', bbox=[152.0,155.0,-36.0,-34.0],
-                    stime=[1985,1,1], etime=[2018,12,31])
+  import RADWave as rwave
+
+  wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOS_YASI_east.txt', bbox=[170, 175, -17, -12],
+                            stime=[2011,1,27], etime=[2011,2,4], cycloneCSV='../dataset/2010-YASI.csv')
+
 
 After class initialisation querying the actual dataset is realised by calling the :code:`processingAltimeterData` function (option available in the `processingAltimeterData API`_)
 
 .. code-block:: python
-    wa.processingAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
+
+  wa.processingAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
+
 
 The function can take some times to execute depending on the number of :code:`NETCDF` files to load and the size of the dataset to query.
 
@@ -83,13 +88,36 @@ In case where the *processingAltimeterData* function has already been executed, 
 
 
 .. code-block:: python
-    wa.readingAltimeterData(saveCSV = 'altimeterData.csv')
 
+  wa.readingAltimeterData(saveCSV = 'altimeterData.csv')
+
+
+
+Computing wave regime
+*****
+
+To perform wave analysis and compute the wave parameters discussed in the `documentation <https://radwave.readthedocs.io/en/latest/method.html>`_, two additional functions are available:
+
+* :code:`timeSeries` see the `timeSeries API`_ for the option
+* :code:`close2Track` see the `close2Track API`_ for the option
+
+.. code-block:: python
+
+  wa.timeSeries()
+  wa.close2Track(radius=2.,dtmax=6.)
 
 
 
 Outputs
 *******
+
+
+* :code:`seriesSeasonMonth` (`seriesSeasonMonth API`_)
+
+.. code-block:: python
+
+    wa.seriesSeasonMonth(series='wh', time=[1998,2018], lonlat=None, fsave='whall', plot=True)
+
 
 .. code-block:: python
   :emphasize-lines: 6,7
@@ -160,6 +188,9 @@ Another straightforward installation that again does not depend on specific comp
 .. _`waveAnalysis API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis
 .. _`processingAltimeterData API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.processingAltimeterData
 
+
+.. _`timeSeries API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.timeSeries
+.. _`seriesSeasonMonth API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.seriesSeasonMonth
 
 .. _`API compute LEC`: https://biolec.readthedocs.io/en/latest/bioLEC.html#bioLEC.LEC.landscapeConnectivity.computeLEC
 .. _`API write LEC`: https://biolec.readthedocs.io/en/latest/_modules/bioLEC/LEC.html#landscapeConnectivity.writeLEC
