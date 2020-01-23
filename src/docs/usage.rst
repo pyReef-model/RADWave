@@ -98,8 +98,8 @@ Computing wave regime
 
 To perform wave analysis and compute the wave parameters discussed in the `documentation <https://radwave.readthedocs.io/en/latest/method.html>`_, two additional functions are available:
 
-* :code:`timeSeries` see the `timeSeries API`_ for the option
-* :code:`close2Track` see the `close2Track API`_ for the option
+* :code:`timeSeries` see the `timeSeries API`_ for the available options. This function computes time series of wave characteristics from significant wave height :math:`H_{s}` and wind speed :math:`U_{10}`. It computes the both **instantaneous** and **monthly** wave variables. The class :code:`waveAnalysis` stores a Pandas dataframe (called :code:`timeseries`) of computed wave parameters that can be subsequently used for further analysis.
+* :code:`close2Track` see the `close2Track API`_ for the available options. This function can be used when analysing cyclone tracks and finds the closest processed altimeter geographical locations that have been   recorded in the database based on a KDTree search. As for the previous function, this one stores a Pandas dataframe (called :code:`cyclone_data`) of closest wave data that can be subsequently used for further analysis.
 
 .. code-block:: python
 
@@ -107,45 +107,60 @@ To perform wave analysis and compute the wave parameters discussed in the `docum
   wa.close2Track(radius=2.,dtmax=6.)
 
 
-
 Outputs
 *******
 
 
-* :code:`seriesSeasonMonth` (`seriesSeasonMonth API`_)
+* :code:`plotCycloneTracks` see the `plotCycloneTracks API`_ for the available options.
+* :code:`visualiseData` see the `visualiseData API`_ for the available options.
+
+
+.. image:: ../RADWave/Notebooks/images/img5.jpg
+   :scale: 12 %
+   :alt: plotting functions 1
+   :align: center
+
 
 .. code-block:: python
 
-    wa.seriesSeasonMonth(series='wh', time=[1998,2018], lonlat=None, fsave='whall', plot=True)
+  wa.plotCycloneTracks(title="Cyclone YASI Track", markersize=100, zoom=4,
+                     extent=[138, 180, -30, -10], fsize=(12, 10))
+
+  wa.visualiseData(title="Altimeter data", extent=[138, 180, -30, -10.0],
+                  markersize=35, zoom=4, fsize=(12, 10), fsave=None)
+
+
+* :code:`plotTimeSeries` see the `plotTimeSeries API`_ for the available options.
+* :code:`seriesSeasonMonth` see the `seriesSeasonMonth API`_ for the available options.
+
+
+.. image:: ../RADWave/Notebooks/images/img6.jpg
+   :scale: 13 %
+   :alt: plotting functions 2
+   :align: center
 
 
 .. code-block:: python
-  :emphasize-lines: 6,7
 
-  import bioLEC as bLEC
-
-  biodiv = bLEC.landscapeConnectivity(filename='pathtofile.csv')
-  biodiv.computeLEC()
-
-  biodiv.writeLEC('result')
-  biodiv.viewResult(imName='plot.png')
-
-Once the :code:`computeLEC()` function (see `API compute LEC`_) has been ran, the result are then available in different forms.
-
-From the :code:`writeLEC` function (see `API write LEC`_), the user can first save the dataset in :code:`CSV` and :code:`VTK` formats containing the X,Y,Z coordinates as well as the computed LEC and normalised LEC (_nLEC_).
-
-Then several figures can be created showing **maps of elevation and LEC values** as well as graphs of LEC and elevation frequency as a function of site elevation (such as the figure presented below). In some functions, one can plot the average and error bars of LEC within elevational bands.
+  wa.plotTimeSeries(time=[1995,2016], series='H', fsize=(12, 5), fsave='seriesH')
+  whdata = wa.seriesSeasonMonth(series='wh', time=[1998,2018], lonlat=None, fsave='whall', plot=True)
 
 
-Available plotting functions are provided below:
 
-* :code:`viewResult`
-* :code:`viewElevFrequency`
-* :code:`viewLECFrequency`
-* :code:`viewLECZbar`
-* :code:`viewLECZFrequency`
+* :code:`cycloneAltiPoint` see the `cycloneAltiPoint API`_ for the available options.
 
-For a complete list of available options, users need to go to the `API documentation <https://biolec.readthedocs.io/en/latest/bioLEC.html#bioLEC.LEC.landscapeConnectivity.viewLECFrequency>`_.
+
+.. image:: ../RADWave/Notebooks/images/img7.jpg
+   :scale: 15 %
+   :alt: plotting function 3
+   :align: center
+
+
+.. code-block:: python
+
+  wa.cycloneAltiPoint(showinfo=True, extent=[138, 180, -18, -10],
+                  markersize=35, zoom=4, fsize=(12, 5))
+
 
 Running examples
 ----------------
@@ -170,7 +185,7 @@ launch the demonstration at `RADWave-live (mybinder.org) <https://mybinder.org/v
 
 .. image:: ../RADWave/Notebooks/images/binder.jpg
    :scale: 30 %
-   :alt: boundary conditions
+   :alt: binder
    :align: center
 
 Docker
@@ -187,13 +202,13 @@ Another straightforward installation that again does not depend on specific comp
 
 .. _`waveAnalysis API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis
 .. _`processingAltimeterData API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.processingAltimeterData
-
-
 .. _`timeSeries API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.timeSeries
 .. _`seriesSeasonMonth API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.seriesSeasonMonth
-
-.. _`API compute LEC`: https://biolec.readthedocs.io/en/latest/bioLEC.html#bioLEC.LEC.landscapeConnectivity.computeLEC
-.. _`API write LEC`: https://biolec.readthedocs.io/en/latest/_modules/bioLEC/LEC.html#landscapeConnectivity.writeLEC
+.. _`close2Track API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.close2Track
+.. _`visualiseData API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.visualiseData
+.. _`plotTimeSeries API`: plotTimeSeries https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.plotTimeSeries
+.. _`plotCycloneTracks API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.plotCycloneTracks
+.. _`cycloneAltiPoint API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.cycloneAltiPoint
 
 
 .. [Ribal2019] Ribal, A. & Young, I. R. -
