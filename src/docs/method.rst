@@ -1,47 +1,39 @@
-What is the LEC?
+From Altimeter data to wave climate
 ================
 
-**LEC** quantifies the closeness of a site to all others with **similar elevation**.
-For a given landscape, LEC is primarily dependent on **elevation range** and on **species niche width**. It quantifies the closeness of any point in the landscape to all others at similar elevation.
+This page outlines the techniques and methods used to acquire and analyse data from *radar satellite altimeters* and how **RADWave** package uses this dataset to investigate wave parameters, enabling wave climate analysis of varying spatial and temporal resolution.
 
-It has been shown that **LEC** captures well the :math:`\alpha`-**diversity variations** observed in mountainous landscape [Lomolino2008]_ and simulated by full **meta-community models** [Bertuzzo2016]_ as shown in the figure below.
-
-.. image:: ../RADWave/Notebooks/images/pearson.jpg
-   :scale: 20 %
+.. image:: ../RADWave/Notebooks/images/img1.jpg
+   :scale: 10 %
    :alt: LEC versus diversity
    :align: center
 
 .. important::
-  It suggests that **geomorphic features** are a **first-order control on biodiversity** and that **LEC** metric can be used to  quickly assess **species richness distribution in complex landscapes**.
+  **RADWave** uses post-processed altimeter dataset to analyse historical wave climate and trends but can also be used to determine cyclone-generated wave conditions.
 
 
-Cost function
+Satellite Altimeter Data
 -------------
 
-Considering a 2D lattice made of *N* squared cells, LEC for cell *i* (:math:`{LEC}_i`) is given by
+Altimeter observations of the ocean surface are been recorded since 1985, with a short break between 1989-1991 due to no operating satellites [Chelton2001]_ ([fig. below](http://www.altimetry.info/radar-altimetry-tutorial/how-altimetry-works/)). Thirteen altimeters, named **GEOSAT**, **ERS-1**, **TOPEX**, **ERS-2**, **GFO**, **JASON-1**, **ENVISAT**, **JASON-2**, **HAI-YANG-2A**, **SARAL**, **JASON-3** and **SENTINEL-3A**, provides detailed and global coverage.
 
-.. math::
-   {LEC}_i = \sum_{j=1}^N C_{ji}
+.. note::
+ Satellites were predominantly placed in sun-synchronous, near-polar orbits, covering the same ground track every 3-10 days. Observations are therefore not made every day, however, observation frequency has increased in recent years due to the addition of more altimeters.
 
-where :math:`C_{ji}` quantifies the closeness between sites *j* and *i* with respect to elevational connectivity. :math:`C_{ji}` measures the cost for a given species adapted to cell *j* to spread and colonise cell *i*. This cost is a function of **elevation** and evaluates how often species adapted to the elevation of cell *j* have to **travel outside their optimal species niche width** (:math:`\sigma`) to reach cell *i* (as shown in the figure below).
+ .. image:: ../RADWave/Notebooks/images/img3.jpg
+    :scale: 10 %
+    :alt: Altimeter data
+    :align: center
 
-Following Bertuzzo et al. [Bertuzzo2016]_, :math:`C_{ji}` is expressed as:
+.. attention:
+ Twelve of the altimeters operate in the *Ku* frequency band, except for **SARAL**, which uses the *Ka* band.
 
-.. math::
-   -\ln C_{ji} = \frac{1}{2\sigma^2} \min_{p  \in \{j\rightarrow i\}} \sum_{r=2}^L (z_{k_r}-z_j)^2
+To increase analysis ability between altimeter missions, [Ribal2019]_ combined and reprocessed data from *Globwave*, *Radar Altimeter Data System* and the *National Satellite Ocean Application Service* to provide a single dataset spanning all thirteen altimeter missions from 1985-2019.
 
-where :math:`p=[k_1,k_2, ...,k_L]` (with :math:`k_1=j` and :math:`k_L=i`) are the cells comprised in the path *p* from *j* to *i*.
+> Altimeters measure the ocean surface by emitting a *radar pulse* and determining the shape, power and time delay of the return pulse. The shape is converted into **Hs**. The power of the return pulse, also known as the backscatter coefficient, is used to determine *ocean surface properties* including surface roughness. By applying a relationship between uncalibrated wind speed and backscatter coefficient, a **calibrated wind speed** (10 m above the sea surface and averaged over 10 minutes) can be determined.
 
-.. image:: ../RADWave/Notebooks/images/path.jpg
-   :scale: 20 %
-   :alt: LEC computation
-   :align: center
-
-In the figure above, we illustrate the approach implemented in **RADWave** to compute the closeness measure (:math:`C_{ji}`) used to quantify **LEC** based on a topography grid (adapted from [Bertuzzo2016]_). Two paths from site *j* to *i* (inset) are proposed with their elevation profiles. Associated costs are computed following the equation above (:math:`\sum_{r=2}^L (z_{k_r}-z_j)^2`).
-
-
-.. hint::
-    Despite a longer length, **the cost associated to the red path is smaller than that of the blue one** as it passes across sites with similar elevations to :math:`z_j`.
+.. important::
+  Overall, [Ribal2019]_ suggests that preprocessed and calibrated dataset is valid for wind speed below 24 m/s and Hs below 9 m, however, notes that values above this limit are likely still valid.
 
 `Dijkstra's algorithm`_
 -----------------------
@@ -87,9 +79,12 @@ Here we do not perform a parallelisation of the **Dijkstra’s algorithm** but i
 .. [Lomolino2008] M.V. Lomolino -
   Elevation gradients of species-density: historical and prospective views. Glob. Ecol. Biogeogr. 10, 3-13, `DOI: 10.1046/j.1466-822x.2001.00229.x`_, 2008.
 
-.. [vanderWalt2014] S. van der Walt, J.L. Schönberger, J. Nunez-Iglesias, F. Boulogne, J.D. Warner, N. Yager, E. Gouillart & T. Yu -
-  Scikit Image Contributors - scikit-image: image processing in Python, `PeerJ 2:e453`_, 2014.
 
+.. [Chelton2001] Chelton, D.B., Ries, J.C., Haines, B.J., Fu, L.L. & Callahan, P.S. -
+    Satellite Altimetry, Satellite altimetry and Earth sciences in L.L. Fu and A. Cazenave Ed., Academic Press, 2001
+
+.. [Ribal2019] Ribal, A. & Young, I. R. -
+    33 years of globally calibrated wave height and wind speed data based on altimeter observations. **Scientific Data** 6(77), p.100, 2019.
 
 
 .. _`DOI: 10.1073/pnas.1518922113`: http://www.pnas.org/cgi/doi/10.1073/pnas.1518922113
