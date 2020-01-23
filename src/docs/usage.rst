@@ -110,6 +110,19 @@ To perform wave analysis and compute the wave parameters discussed in the `docum
 Outputs
 *******
 
+We provide several default plotting functionalities within **RADWave** package.
+
+.. note::
+  Plotting functions rely on `Cartopy <https://scitools.org.uk/cartopy/docs/latest/>`_, `Seaborn <https://seaborn.pydata.org>`_, `Pandas <https://pandas.pydata.org/>`_ and Matplotlib libraries.
+
+In most of these functions it is possible to export the figures as :code:`PNG` files and for better rendering we recommend in Jupyter Notebooks to add the following matplotlib commands in your code cell:
+
+.. code-block:: python
+
+  %matplotlib inline
+  %config InlineBackend.figure_format = 'svg'
+
+These functions are quickly presented below: 
 
 * :code:`plotCycloneTracks` see the `plotCycloneTracks API`_ for the available options.
 * :code:`visualiseData` see the `visualiseData API`_ for the available options.
