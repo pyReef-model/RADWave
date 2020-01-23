@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-RADWave - *Wave analysis from Altimer data*
+RADWave - *Wave analysis from Altimeter data*
 =============================================
 
 .. image:: https://readthedocs.org/projects/radwave/badge/?version=latest
