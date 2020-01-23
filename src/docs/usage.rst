@@ -122,14 +122,14 @@ In most of these functions it is possible to export the figures as :code:`PNG` f
   %matplotlib inline
   %config InlineBackend.figure_format = 'svg'
 
-These functions are quickly presented below: 
+These functions are quickly presented below:
 
 * :code:`plotCycloneTracks` see the `plotCycloneTracks API`_ for the available options.
 * :code:`visualiseData` see the `visualiseData API`_ for the available options.
 
 
 .. image:: ../RADWave/Notebooks/images/img5.jpg
-   :scale: 12 %
+   :scale: 15 %
    :alt: plotting functions 1
    :align: center
 
@@ -148,7 +148,7 @@ These functions are quickly presented below:
 
 
 .. image:: ../RADWave/Notebooks/images/img6.jpg
-   :scale: 13 %
+   :scale: 16 %
    :alt: plotting functions 2
    :align: center
 
@@ -164,7 +164,7 @@ These functions are quickly presented below:
 
 
 .. image:: ../RADWave/Notebooks/images/img7.jpg
-   :scale: 15 %
+   :scale: 20 %
    :alt: plotting function 3
    :align: center
 
