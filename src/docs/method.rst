@@ -1,4 +1,4 @@
-Altimeter data 2 wave climate
+Wave parameters
 ================
 
 This page outlines the techniques and methods used to acquire and analyse data from *radar satellite altimeters* and how **RADWave** package uses this dataset to investigate wave parameters, enabling wave climate analysis of varying spatial and temporal resolution.
@@ -12,7 +12,7 @@ This page outlines the techniques and methods used to acquire and analyse data f
   **RADWave** uses post-processed altimeter dataset to analyse historical wave climate and trends but can also be used to determine cyclone-generated wave conditions.
 
 
-Satellite Altimeter Data
+Satellite altimeter data
 -------------
 
 Altimeter observations of the ocean surface are been recorded since 1985, with a short break between 1989-1991 due to no operating satellites [Chelton2001]_ (fig. below from `source <http://www.altimetry.info/radar-altimetry-tutorial/how-altimetry-works/>`_). Thirteen altimeters, named **GEOSAT**, **ERS-1**, **TOPEX**, **ERS-2**, **GFO**, **JASON-1**, **ENVISAT**, **JASON-2**, **HAI-YANG-2A**, **SARAL**, **JASON-3** and **SENTINEL-3A**, provides detailed and global coverage.
@@ -59,7 +59,7 @@ Wave energy, group velocity & power
 -----------------------
 
 .. image:: ../RADWave/Notebooks/images/img4.jpg
-  :scale: 8 %
+  :scale: 15 %
   :alt: Wave data
   :align: center
 
@@ -75,7 +75,7 @@ Wave group velocity (:math:`C_{g}`) in deep water conditions is approximated wit
 .. math::
    C_{g} = \frac{g T_{z}}{2 \pi}
 
-And wave power $P$ can, therefore, be estimated through:
+And wave power :math:`P` can, therefore, be estimated through:
 
 .. math::
    P = E C_{g}
