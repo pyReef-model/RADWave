@@ -1,4 +1,4 @@
-# RADWave - _Wave analysis from Altimer data_
+# RADWave - _Wave analysis from Altimeter data_
 
 
 [![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave)](https://hub.docker.com/r/pyreefmodel/radwave)
