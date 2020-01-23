@@ -25,14 +25,29 @@ The most simple code lines to use **RADWave** functions is summarised below
 Getting altimeter values from data providers
 *****
 
-The entry point is the function :code:`landscapeConnectivity()` (see `API landscapeConnectivity`_) that requires the **elevation** field as it main input.
-There are 3 ways to import the elevation dataset :
+As previously mentioned, **RADWave** capabilities are illustrated using the Australian Ocean Data Network portal [`AODN <https://portal.aodn.org.au/>`_].
+The altimeter dataset are available from the portal by searching for the following data collection:
+
+* :code:`IMOS-SRS Surface Waves Sub-Facility - altimeter wave/wind data`
+
+This global dataset has been compiled and extensively calibrated by [Ribal2019]_ and was regularly updated using altimeter data from 1985 to present. It can be downloaded in 1° x 1° URL files.
+
+.. note::
+  The video below illustrates how to select both a spatial bounding box and a temporal extent from the portal and how to export the file containing the :code:`List of URLs` used for wave analysis. This :code:`TXT` file contains a list of :code:`NETCDF` files for each available satellites.
 
 .. raw:: html
 
     <div style="text-align: center; margin-bottom: 2em;">
-    <iframe width="100%" height="500" src="https://www.youtube.com/embed/MpwkkWzqUHQ?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="100%" height="550" src="https://www.youtube.com/embed/MpwkkWzqUHQ?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+
+.. important:
+    **RADWave** uses the file containing the *list of URLs* to query via THREDDS the remote data. This operation can take several minutes and when looking at a large region it is recommended to divide the analyse in smaller regions and download a series of URLs text file instead of the entire domain directly.
+
+
+Computing wave parameters
+*****
+
 
 * as a :code:`CSV` file (argument: :code:`filename`) containing 3 columns for X, Y and Z respectively with no header and ordered along the X axis first (as illustrated in the top figure) and shown below:
 
@@ -113,7 +128,7 @@ There are different ways of using the **RADWave** package. If you used a local i
   $ git clone https://github.com/pyReef-model/RADWave.git
 
 
-Binder & Docker
+Binder
 ***************
 
 The series of *Jupyter Notebooks* can also be ran with **Binder** that opens those notebooks in an executable environment, making the package immediately reproducible without having to perform any installation.
@@ -129,6 +144,8 @@ launch the demonstration at `RADWave-live (mybinder.org) <https://mybinder.org/v
    :alt: boundary conditions
    :align: center
 
+Docker
+***************
 
 Another straightforward installation that again does not depend on specific compilers relies on the **docker virtualisation system**. Simply look for the following Docker container **pyreefmodel/radwave**.
 
@@ -144,7 +161,5 @@ Another straightforward installation that again does not depend on specific comp
 .. _`API write LEC`: https://biolec.readthedocs.io/en/latest/_modules/bioLEC/LEC.html#landscapeConnectivity.writeLEC
 
 
-.. [Bertuzzo16] E. Bertuzzo, F. Carrara, L. Mari, F. Altermatt, I. Rodriguez-Iturbe & A. Rinaldo -
-  Geomorphic controls on species richness. PNAS, 113(7) 1737-1742, `DOI: 10.1073/pnas.1518922113`_, 2016.
-
-.. _`DOI: 10.1073/pnas.1518922113`: http://www.pnas.org/cgi/doi/10.1073/pnas.1518922113
+.. [Ribal2019] Ribal, A. & Young, I. R. -
+    33 years of globally calibrated wave height and wind speed data based on altimeter observations. **Scientific Data** 6(77), p.100, 2019.
