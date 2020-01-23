@@ -18,7 +18,7 @@ RADWave - *Wave analysis from Altimer data*
    :alt: Altimeter analysis
    :align: center
 
-**RADWave** is Python package that provides a mechanism to access altimeter datasets through web-enabled data services (THREDDS). The package capabilities are illustrated based on the the Australian Ocean Data Network ([**AODN**](https://portal.aodn.org.au) database that spans from 1985-present and that has already been calibrated and validated by [Ribal2019]_. **RADWave** allows to query over a range of spatial and temporal scales altimeter parameters in specific geographical regions and subsequently calculates significant wave heights, periods, group velocities, average wave energy densities and wave energy fluxes.
+**RADWave** is Python package that provides a mechanism to access altimeter datasets through web-enabled data services (THREDDS). The package capabilities are illustrated based on the the Australian Ocean Data Network [`**AODN** <https://portal.aodn.org.au/>`_] database that spans from 1985-present and that has already been calibrated and validated by [Ribal2019]_. **RADWave** allows to query over a range of spatial and temporal scales altimeter parameters in specific geographical regions and subsequently calculates significant wave heights, periods, group velocities, average wave energy densities and wave energy fluxes.
 
 .. hint::
   **RADWave** can be used to easily calculate past wave conditions and infers long term wave climate variability, providing new insights on wave modal conditions, seasonal changes, long-term trends and associated modulation by climate oscillations.

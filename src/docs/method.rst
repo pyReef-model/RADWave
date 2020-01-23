@@ -1,4 +1,4 @@
-From Altimeter data to wave climate
+Altimeter data 2 wave climate
 ================
 
 This page outlines the techniques and methods used to acquire and analyse data from *radar satellite altimeters* and how **RADWave** package uses this dataset to investigate wave parameters, enabling wave climate analysis of varying spatial and temporal resolution.
@@ -15,15 +15,15 @@ This page outlines the techniques and methods used to acquire and analyse data f
 Satellite Altimeter Data
 -------------
 
-Altimeter observations of the ocean surface are been recorded since 1985, with a short break between 1989-1991 due to no operating satellites [Chelton2001]_ ([fig. below](http://www.altimetry.info/radar-altimetry-tutorial/how-altimetry-works/)). Thirteen altimeters, named **GEOSAT**, **ERS-1**, **TOPEX**, **ERS-2**, **GFO**, **JASON-1**, **ENVISAT**, **JASON-2**, **HAI-YANG-2A**, **SARAL**, **JASON-3** and **SENTINEL-3A**, provides detailed and global coverage.
+Altimeter observations of the ocean surface are been recorded since 1985, with a short break between 1989-1991 due to no operating satellites [Chelton2001]_ (fig. below from (`source <http://www.altimetry.info/radar-altimetry-tutorial/how-altimetry-works/>`_)). Thirteen altimeters, named **GEOSAT**, **ERS-1**, **TOPEX**, **ERS-2**, **GFO**, **JASON-1**, **ENVISAT**, **JASON-2**, **HAI-YANG-2A**, **SARAL**, **JASON-3** and **SENTINEL-3A**, provides detailed and global coverage.
 
 .. note::
  Satellites were predominantly placed in sun-synchronous, near-polar orbits, covering the same ground track every 3-10 days. Observations are therefore not made every day, however, observation frequency has increased in recent years due to the addition of more altimeters.
 
- .. image:: ../RADWave/Notebooks/images/img3.jpg
-    :scale: 10 %
-    :alt: Altimeter data
-    :align: center
+.. image:: ../RADWave/Notebooks/images/img3.jpg
+  :scale: 8 %
+  :alt: Altimeter data
+  :align: center
 
 .. attention:
  Twelve of the altimeters operate in the *Ku* frequency band, except for **SARAL**, which uses the *Ka* band.
