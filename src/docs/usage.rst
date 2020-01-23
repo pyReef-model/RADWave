@@ -4,29 +4,35 @@ Quick start guide
 I/O Options
 -----------
 
-The most simple code lines to use **RADWave** package is summarised below
+The most simple code lines to use **RADWave** functions is summarised below
 
 .. code-block:: python
   :emphasize-lines: 3,4
 
-  import bioLEC as bLEC
+  import RADWave as rwave
 
-  biodiv = bLEC.landscapeConnectivity(filename='pathtofile.csv')
-  biodiv.computeLEC()
+  wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOSURLs.txt', bbox=[152.0,155.0,-36.0,-34.0],
+                  stime=[1985,1,1], etime=[2018,12,31])
+  wa.processingAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
+  wa.visualiseData(title="Altimeter data tracks", extent=[149.,158.,-38.,-32.],
+                 addcity=['Sydney', 151.2093, -33.8688], markersize=40, zoom=8,
+                 fsize=(8, 7), fsave='altimeterdata')
+  wa.timeSeries()
+  wa.plotTimeSeries(time=[1995,2016], series='H', fsize=(12, 5), fsave='seriesH')
+  wh_all = wa.seriesSeasonMonth(series='wh', time=[1998,2018], lonlat=None, fsave='whall', plot=True)
 
-  biodiv.writeLEC('result')
-  biodiv.viewResult(imName='plot.png')
 
-Input
+Getting altimeter values from data providers
 *****
 
 The entry point is the function :code:`landscapeConnectivity()` (see `API landscapeConnectivity`_) that requires the **elevation** field as it main input.
 There are 3 ways to import the elevation dataset :
 
-.. image:: ../RADWave/Notebooks/images/LECres.jpg
-   :scale: 38 %
-   :alt: boundary conditions
-   :align: center
+.. raw:: html
+
+    <div style="text-align: center; margin-bottom: 2em;">
+    <iframe width="100%" height="500" src="https://www.youtube.com/embed/MpwkkWzqUHQ?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
 * as a :code:`CSV` file (argument: :code:`filename`) containing 3 columns for X, Y and Z respectively with no header and ordered along the X axis first (as illustrated in the top figure) and shown below:
 
