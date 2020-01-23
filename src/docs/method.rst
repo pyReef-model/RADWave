@@ -15,7 +15,7 @@ This page outlines the techniques and methods used to acquire and analyse data f
 Satellite Altimeter Data
 -------------
 
-Altimeter observations of the ocean surface are been recorded since 1985, with a short break between 1989-1991 due to no operating satellites [Chelton2001]_ (fig. below from (`source <http://www.altimetry.info/radar-altimetry-tutorial/how-altimetry-works/>`_)). Thirteen altimeters, named **GEOSAT**, **ERS-1**, **TOPEX**, **ERS-2**, **GFO**, **JASON-1**, **ENVISAT**, **JASON-2**, **HAI-YANG-2A**, **SARAL**, **JASON-3** and **SENTINEL-3A**, provides detailed and global coverage.
+Altimeter observations of the ocean surface are been recorded since 1985, with a short break between 1989-1991 due to no operating satellites [Chelton2001]_ (fig. below from `source <http://www.altimetry.info/radar-altimetry-tutorial/how-altimetry-works/>`_). Thirteen altimeters, named **GEOSAT**, **ERS-1**, **TOPEX**, **ERS-2**, **GFO**, **JASON-1**, **ENVISAT**, **JASON-2**, **HAI-YANG-2A**, **SARAL**, **JASON-3** and **SENTINEL-3A**, provides detailed and global coverage.
 
 .. note::
  Satellites were predominantly placed in sun-synchronous, near-polar orbits, covering the same ground track every 3-10 days. Observations are therefore not made every day, however, observation frequency has increased in recent years due to the addition of more altimeters.
@@ -30,7 +30,7 @@ Altimeter observations of the ocean surface are been recorded since 1985, with a
 
 To increase analysis ability between altimeter missions, [Ribal2019]_ combined and reprocessed data from *Globwave*, *Radar Altimeter Data System* and the *National Satellite Ocean Application Service* to provide a single dataset spanning all thirteen altimeter missions from 1985-2019.
 
-> Altimeters measure the ocean surface by emitting a *radar pulse* and determining the shape, power and time delay of the return pulse. The shape is converted into **:math:`H_{s}`**. The power of the return pulse, also known as the backscatter coefficient, is used to determine *ocean surface properties* including surface roughness. By applying a relationship between uncalibrated wind speed and backscatter coefficient, a **calibrated wind speed** :math:`U_{10}` (10 m above the sea surface and averaged over 10 minutes) can be determined.
+Altimeters measure the ocean surface by emitting a *radar pulse* and determining the shape, power and time delay of the return pulse. The shape is converted into :math:`H_{s}`. The power of the return pulse, also known as the backscatter coefficient, is used to determine *ocean surface properties* including surface roughness. By applying a relationship between uncalibrated wind speed and backscatter coefficient, a **calibrated wind speed** :math:`U_{10}` (10 m above the sea surface and averaged over 10 minutes) can be determined.
 
 .. important::
   Overall, [Ribal2019]_ suggests that preprocessed and calibrated dataset is valid for wind speed below 24 m/s and Hs below 9 m, however, notes that values above this limit are likely still valid.
@@ -55,34 +55,32 @@ Wave age :math:`\epsilon` is then inputted into a Genetic Algorithm [Remya2010]_
    T_{z} = (((\epsilon - 5.78)/(\epsilon + (U_{10}/H_{s} \times (U_{10}/H_{s}) + H_{s}))))) +(H_{s} + 5.70))
 
 
- Mean wave energy
- -----------------------
+Wave energy, group velocity & power
+-----------------------
 
-The estimation of :math:`C_{ji}` requires computation of **all the possible paths** *p* from *j* to *i* and is defined as the maximum closeness value along these paths and this is solved for each cell *j* using **Dijkstra's algorithm** [Dijkstra1959]_ with diagonal connectivity between cells.
+.. image:: ../RADWave/Notebooks/images/img4.jpg
+  :scale: 8 %
+  :alt: Wave data
+  :align: center
 
-For each cell *j*, the algorithm  builds a **Dijkstra tree** that branches the given cell with all the cells defining the simulated region. **Edge weights** are set equal to the square of the difference between the considered vertex elevation (:math:`z_{k_r}`) and :math:`z_j`. The least-cost distance between *j* and *i* is then calculated as the **minimum sum of edge weights** obtained from the cells along the shortest-path (see top figure).
+Mean wave energy density (:math:`E`) (J/m2) is calculated by:
 
-Here, the closeness is measured as a **least-cost** distances that optimises the costs associated to the edge weights of the traversed cells as well as the travelled Euclidean distance. As the least-cost distances incorporate landscape costs to movement, the approach allows for **closeness differentiation** between cells that might be seen as *equally near* if landscape costs were not accounted for.
+.. math::
+   E = \frac{1}{8} \rho g H_{s}^{2}
 
-In **bioLEC** we rely on `scikit-image`_ to compute the least cost distances [Etherington2017]_. `scikit-image`_ package is primarily intended to process image [vanderWalt2014]_ but is designed to work with **NumPy arrays** making it compatible with other Python packages (*e.g.* most other geospatial Python packages) and really simple to use with digital elevation datasets.
+with :math:`\rho` the density of seawater (set to 1027 kg/m3).
 
-While `scikit-image`_ uses slightly different terminology, talking about **minimum cost paths** rather than **least-cost paths**, the approach is identical to those commonly implemented in GIS software and applies Dijkstra's algorithm with diagonal connectivity between cells [Etherington2016]_.
+Wave group velocity (:math:`C_{g}`) in deep water conditions is approximated with:
 
+.. math::
+   C_{g} = \frac{g T_{z}}{2 \pi}
 
-Parallelisation
----------------
+And wave power $P$ can, therefore, be estimated through:
 
-**Dijkstra’s algorithm** is a graph search algorithm that solves single-source shortest path for a graph with non-negative weights. Such an algorithm can be quite long to solve especially in **bioLEC** as it needs to be used to compute the **least-cost paths** for every points on the surface.
+.. math::
+   P = E C_{g}
 
-.. image:: ../RADWave/Notebooks/images/parallel.jpg
-   :scale: 50 %
-   :alt: Parallel runtime
-   :align: center
-
-Here we do not perform a parallelisation of the **Dijkstra’s algorithm** but instead we adopt a simpler strategy where the **Dijkstra trees** for all paths are balanced and distributed over multiple processors using message passing interface (**MPI**). The approach consists in splitting the computational domain row-wise as shown in the above figure.  **Least-cost paths** are then computed for the points belonging to each sub-domain using the **Dijkstra’s algorithm** over the entire region.
-
-.. note::
-  Using this approach, LEC computation is significantly reduced and **scales really well with increasing CPUs**.
+which is the wave energy flux per metre of wave-crest (W/m). This is then converted into kW/m for ease of analysis.
 
 .. [Chelton2001] Chelton, D.B., Ries, J.C., Haines, B.J., Fu, L.L. & Callahan, P.S. -
     Satellite Altimetry, Satellite altimetry and Earth sciences in L.L. Fu and A. Cazenave Ed., Academic Press, 2001.
@@ -95,5 +93,3 @@ Here we do not perform a parallelisation of the **Dijkstra’s algorithm** but i
 
 .. [Remya2010] Remya G., Kumar, R., Basu, S. & Sarkar, A. -
     Altimeter-derived ocean wave period using genetic algorithm. **IEEE Geoscience and Remote Sensing Letters**, 8(2), 354–358, 2010.
-
-.. _`DOI: 10.1073/pnas.1518922113`: http://www.pnas.org/cgi/doi/10.1073/pnas.1518922113
