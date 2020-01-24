@@ -1,5 +1,5 @@
 # docker login --username=yourhubusername --password=yourpassword
-# docker build -t pyreefmodel/radwave-bundle:latest .
+# docker build -t pyreefmodel/radwave-bundle:latest -f Dockerfile-debian .
 # sudo docker push pyreefmodel/radwave-bundle:latest
 
 FROM debian:latest
