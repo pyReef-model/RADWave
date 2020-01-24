@@ -4,6 +4,8 @@
 [![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave)](https://hub.docker.com/r/pyreefmodel/radwave)
 [![PyPI](https://img.shields.io/pypi/v/RADWave)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest)
 
+[![DOI](https://zenodo.org/badge/235496363.svg)](https://zenodo.org/badge/latestdoi/235496363)
+
 **RADWave** documentation is found at [**radwave.readthedocs.io**](https://radwave.readthedocs.io/)
 
 **RADWave** is a python package built to characterise *wave conditions* based on altimeter data.
