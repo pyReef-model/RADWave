@@ -16,14 +16,14 @@ If you found a bug, have questions, or are just having trouble with **RADWave**,
 * join the **RADWave User Group on Slack** by sending an email request to: tristan.salles@sydney.edu.au
 * open an issue in our issue-tracker_ and we'll try to help resolve the concern.
 
-.. _issue-tracker: https://github.com/Geodels/RADWave/issues/new)
+.. _issue-tracker: https://github.com/pyReef-model/RADWave/issues/new)
 
 Where to find support
 ---------------------
 
 Please feel free to submit new issues to the issue-log_ to request new features, document new bugs, or ask questions.
 
-.. _issue-log: https://github.com/Geodels/RADWave/issues/new)
+.. _issue-log: https://github.com/pyReef-model/RADWave/issues/new)
 
 License
 -------
