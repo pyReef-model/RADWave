@@ -44,7 +44,7 @@ You can install `RADWave` using the
 [`pip package manager`](https://pypi.org/project/pip/) with your version of Python:
 
 ```bash
-python3 -m pip install RADWave
+python3 -m pip install radwave
 ```
 
 ### Installing using Docker

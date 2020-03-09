@@ -43,8 +43,8 @@ If you need to install it for different python versions:
 
 .. code-block:: bash
 
-  $ python2 -m pip install RADWave
-  $ python3 -m pip install RADWave
+  $ python2 -m pip install radwave
+  $ python3 -m pip install radwave
 
 To install the *development version*: **Clone the repository using**
 
