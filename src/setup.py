@@ -28,6 +28,7 @@ if __name__ == "__main__":
           long_description_content_type='text/markdown',
           packages=['RADWave'],
           install_requires=[
+                        'pytest',
                         'numpy>=1.15.0',
                         'six>=1.11.0',
                         'setuptools>=38.4.0',

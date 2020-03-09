@@ -14,6 +14,7 @@ The complete list of Dependencies is available in the **src/requirements.txt** f
 .. code-block:: bash
 
   numpy>=1.15.0
+  pytest
   six>=1.11.0
   setuptools>=38.4.0
   pandas>=0.25
