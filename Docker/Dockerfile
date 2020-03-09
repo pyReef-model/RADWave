@@ -25,8 +25,6 @@ RUN   cd $MODULE_DIR && python3 -m pip install --no-cache-dir --no-deps --upgrad
 
 
 RUN ipython3 -c 'import RADWave; RADWave.documentation.install_documentation(path="Notebooks")'
-RUN python3 -m pip show radwave
-RUN ls /usr/local/lib/python3.5/dist-packages/
 ADD  --chown=jovyan:jovyan Notebooks/0-StartHere.ipynb Notebooks/0-StartHere.ipynb
 
 
