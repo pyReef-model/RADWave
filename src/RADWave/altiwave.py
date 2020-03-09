@@ -848,8 +848,7 @@ class waveAnalysis(object):
         eps = self._waveAge(H, U, grav=9.80665)
 
         # Wave age is then used in a Genetic Algorithm to obtain wave period
-        period = ((eps - (5.78)) / (eps + (U / (H * ((U / H) + H)))))
-                  + (H + (5.70))
+        period = ((eps - (5.78)) / (eps + (U / (H * ((U / H) + H))))) + (H + (5.70))
 
         return period
 
