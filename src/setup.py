@@ -21,7 +21,7 @@ if __name__ == "__main__":
           author="Tristan Salles",
           author_email="tristan.salles@sydney.edu.au",
           url="https://github.com/pyReef-model/RADWave",
-          version="0.0.4",
+          version="0.0.5",
           description="A Python interface to perform wave analysis from \
                     satellite altimeter data.",
           long_description=long_description,
