@@ -4,7 +4,6 @@
 # Licensed under the GNU LGPL Version 3
 
 import re
-import sys
 import math
 import time
 import numpy as np
@@ -286,8 +285,6 @@ class waveAnalysis(object):
 
         t0 = time.clock()
         p = 0
-        step = 0
-        steps = 58
         combineframe = None
 
         for u in range(len(self.allURL)):
@@ -396,7 +393,8 @@ class waveAnalysis(object):
                         )
                         frame["altimeter"] = self.nameSat[u]
                         if p > 0:
-                            combineframe = pd.concat([combineframe, frame], sort=True)
+                            combineframe = pd.concat([combineframe, frame],
+                                                     sort=True)
                         else:
                             combineframe = frame
                             p += 1
@@ -534,7 +532,8 @@ class waveAnalysis(object):
             )
         else:
             ax.set_extent(
-                [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
+                [extent[0], extent[1], extent[2], extent[3]],
+                crs=ccrs.PlateCarree()
             )
 
         # Add the Stamen data
@@ -690,7 +689,8 @@ class waveAnalysis(object):
             )
         else:
             ax.set_extent(
-                [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.Geodetic()
+                [extent[0], extent[1], extent[2], extent[3]],
+                crs=ccrs.Geodetic()
             )
 
         # Add the Stamen data
@@ -763,7 +763,8 @@ class waveAnalysis(object):
         ring = LinearRing(list(zip(rlons, rlats)))
         if self.cyclone is None:
             ax.add_geometries(
-                [ring], ccrs.PlateCarree(), facecolor="none", edgecolor="k", linewidth=2
+                [ring], ccrs.PlateCarree(), facecolor="none",
+                edgecolor="k", linewidth=2
             )
         else:
             ax.add_geometries(
@@ -847,7 +848,8 @@ class waveAnalysis(object):
         eps = self._waveAge(H, U, grav=9.80665)
 
         # Wave age is then used in a Genetic Algorithm to obtain wave period
-        period = ((eps - (5.78)) / (eps + (U / (H * ((U / H) + H))))) + (H + (5.70))
+        period = ((eps - (5.78)) / (eps + (U / (H * ((U / H) + H)))))
+                  + (H + (5.70))
 
         return period
 
@@ -971,7 +973,8 @@ class waveAnalysis(object):
         # Days averaged parameters.
         self.days = int(days)
 
-        meanwave = wavedf.rolling(str(self.days) + "D", on="date", min_periods=1).mean()
+        meanwave = wavedf.rolling(str(self.days) + "D", on="date",
+                                  min_periods=1).mean()
 
         self.wh_rolling = meanwave["wh"]
         self.period_rolling = meanwave["period"]
