@@ -1576,8 +1576,8 @@ class waveAnalysis(object):
         self, series="wh", time=None, lonlat=None, fsave=None, plot=True
     ):
         """
-        This function allows to analyse the seasonal characteristics of each
-        parameter obtained from the altimeter dataset.
+        This function allows  the user to analyse the seasonal characteristics
+        of each parameter obtained from the altimeter dataset.
         For a specified time interval and geographical extent, it computes for a
         given wave variable the monthly seasonality.
         Obtained monthly averaged values are stored and returned with a Pandas
