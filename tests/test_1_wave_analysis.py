@@ -34,7 +34,7 @@ def test_timeseries_generation():
                                  )
 
     wclass.readAltimeterData(saveCSV = 'altimeterData.csv')
-    ts = wclass.generate_time_series(days=30)
+    ts = wclass.generateTimeSeries(days=30)
 
     assert round(ts['power'].mean(),3) == 87.752, "test failed"
     assert round(ts['wh_rolling'].min(),3) == 1.208, "test failed"
@@ -95,7 +95,7 @@ def test_seasonal_characteristics():
                                  )
 
     wclass.readAltimeterData(saveCSV = 'altimeterData.csv')
-    ts = wclass.generate_time_series(days=30)
+    ts = wclass.generateTimeSeries(days=30)
     wh_season = wclass.computeSeasonalCharacteristics(series='wh', time=[1998,2008],
                                                       lonlat=None, fsave=None,
                                                       plot=False

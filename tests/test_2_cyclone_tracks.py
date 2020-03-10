@@ -39,7 +39,7 @@ def test_cycloneTimeseries_generation():
                                cycloneCSV='tests/2010-YASI.csv'
                               )
     cyc.readAltimeterData(saveCSV = 'altimeterData.csv')
-    ts = cyc.generate_time_series(days=30)
+    ts = cyc.generateTimeSeries(days=30)
 
     assert round(ts['power'].mean(),3) == 68.851, "test failed"
     assert round(ts['wh_rolling'].min(),3) == 1.676, "test failed"
@@ -54,7 +54,7 @@ def test_cycloneTrack():
                                cycloneCSV='tests/2010-YASI.csv'
                               )
     cyc.readAltimeterData(saveCSV = 'altimeterData.csv')
-    ts = cyc.generate_time_series(days=30)
+    ts = cyc.generateTimeSeries(days=30)
     track = cyc.close2Track(radius=2.,dtmax=16.)
 
     assert round(cyc.cyclone_data['period'].max(),3) == 7.863, "test failed"

@@ -922,7 +922,7 @@ class waveAnalysis(object):
 
         return P
 
-    def generate_time_series(self, days=30):
+    def generateTimeSeries(self, days=30):
         """
         Time series of wave characteristics are obtained via both the
         significant wave height and wind speed parameters from the altimeter
@@ -1610,7 +1610,7 @@ class waveAnalysis(object):
         if self.timeseries is None:
             raise ValueError(
                 "The time series dataframe does not exist, you \
-                              need to run the **generate_time_series()** function \
+                              need to run the **generateTimeSeries()** function \
                               first."
             )
 

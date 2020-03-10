@@ -17,7 +17,7 @@ The most simple code lines to use **RADWave** functions is summarised below
   wa.visualiseData(title="Altimeter data tracks", extent=[149.,158.,-38.,-32.],
                  addcity=['Sydney', 151.2093, -33.8688], markersize=40, zoom=8,
                  fsize=(8, 7), fsave='altimeterdata')
-  timeseries = wa.generate_time_series()
+  timeseries = wa.generateTimeSeries()
   wa.plotTimeSeries(time=[1995,2016], series='H', fsize=(12, 5), fsave='seriesH')
   wh_all = wa.computeSeasonalCharacteristics(series='wh', time=[1998,2018], lonlat=None, fsave='whall', plot=True)
 
@@ -98,12 +98,12 @@ Computing wave regime
 
 To perform wave analysis and compute the wave parameters discussed in the `documentation <https://radwave.readthedocs.io/en/latest/method.html>`_, two additional functions are available:
 
-* :code:`generate_time_series` see the `generate_time_series API`_ for the available options. This function computes time series of wave characteristics from significant wave height :math:`H_{s}` and wind speed :math:`U_{10}`. It computes the both **instantaneous** and **monthly** wave variables. The class :code:`waveAnalysis` stores a Pandas dataframe (called :code:`timeseries`) of computed wave parameters that can be subsequently used for further analysis. The following wave parameters can be plotted with this function: :code:`H` for wave height, :code:`T` for wave period, :code:`P` for wave power, :code:`E` for wave energy, and :code:`Cg` for wave group velocity.
+* :code:`generateTimeSeries` see the `generateTimeSeries API`_ for the available options. This function computes time series of wave characteristics from significant wave height :math:`H_{s}` and wind speed :math:`U_{10}`. It computes the both **instantaneous** and **monthly** wave variables. The class :code:`waveAnalysis` stores a Pandas dataframe (called :code:`timeseries`) of computed wave parameters that can be subsequently used for further analysis. The following wave parameters can be plotted with this function: :code:`H` for wave height, :code:`T` for wave period, :code:`P` for wave power, :code:`E` for wave energy, and :code:`Cg` for wave group velocity.
 * :code:`close2Track` see the `close2Track API`_ for the available options. This function can be used when analysing cyclone tracks and finds the closest processed altimeter geographical locations that have been   recorded in the database based on a KDTree search. As for the previous function, this one stores a Pandas dataframe (called :code:`cyclone_data`) of closest wave data that can be subsequently used for further analysis.
 
 .. code-block:: python
 
-  timeseries = wa.generate_time_series()
+  timeseries = wa.generateTimeSeries()
   track = wa.close2Track(radius=2.,dtmax=6.)
 
 
@@ -215,7 +215,7 @@ Another straightforward installation that again does not depend on specific comp
 
 .. _`waveAnalysis API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis
 .. _`processAltimeterData API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.processAltimeterData
-.. _`generate_time_series API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.generate_time_series
+.. _`generateTimeSeries API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.generateTimeSeries
 .. _`computeSeasonalCharacteristics API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.computeSeasonalCharacteristics
 .. _`close2Track API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.close2Track
 .. _`visualiseData API`: https://radwave.readthedocs.io/en/latest/RADWave.html#RADWave.altiwave.waveAnalysis.visualiseData
