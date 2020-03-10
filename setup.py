@@ -26,7 +26,7 @@ if __name__ == "__main__":
                     satellite altimeter data.",
           long_description=long_description,
           long_description_content_type='text/markdown',
-          packages=['RADWave'],
+          packages=['src/RADWave'],
           install_requires=[
                         'pytest',
                         'numpy>=1.15.0',
