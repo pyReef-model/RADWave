@@ -20,7 +20,7 @@ install:
   - "pip install -e src/"
 
 script:
-  -- pytest --cov=src/
+  - pytest --cov=src/
 
 after_success:
   - coveralls
