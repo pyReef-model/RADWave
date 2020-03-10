@@ -1,0 +1,62 @@
+{% set name = "radwave" %}
+{% set version = "0.0.4" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: bf5735e0cf17e7ac2edca768717503eded4b7042b93b2d33a9623532dd0963e1
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - cartopy >=0.17
+    - matplotlib >=3.0
+    - netcdf4 >=1.5.1
+    - numpy >=1.15.0
+    - pandas >=0.25
+    - pip
+    - python
+    - scikit-image >=0.15
+    - scipy >=1.3
+    - seaborn >=0.9
+    - setuptools >=38.4.0
+    - shapely >=1.6.4
+    - six >=1.11.0
+  run:
+    - cartopy >=0.17
+    - matplotlib >=3.0
+    - netcdf4 >=1.5.1
+    - numpy >=1.15.0
+    - pandas >=0.25
+    - python
+    - scikit-image >=0.15
+    - scipy >=1.3
+    - seaborn >=0.9
+    - setuptools >=38.4.0
+    - shapely >=1.6.4
+    - six >=1.11.0
+    - geopy >=1.20
+    - pymannkendall >=0
+
+test:
+  imports:
+    - RADWave
+
+about:
+  home: "https://github.com/pyReef-model/RADWave"
+  license: GNU
+  license_family: GPL3
+  license_file:
+  summary: "A Python interface to perform wave analysis from satellite altimeter data."
+  doc_url: "https://radwave.readthedocs.io"
+  dev_url:
+
+extra:
+  recipe-maintainers:
+    - tristan-salles

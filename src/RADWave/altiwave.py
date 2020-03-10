@@ -1243,6 +1243,9 @@ class waveAnalysis(object):
             The class **waveAnalysis()** saves a pandas dataframe called
             **cyclone_data** that stores the closest points to each cyclone
             path coordinates for further analysis.
+
+        Returns:
+            cycdata (dataframe): pandas dataframe containing cyclone track information
         """
 
         if self.cyclone is None:
@@ -1325,6 +1328,8 @@ class waveAnalysis(object):
         }
         self.cyclone_data = pd.DataFrame(data)
 
+        return self.cyclone_data
+
     def plotCycloneAltiPoint(
         self,
         showinfo=False,
@@ -1355,9 +1360,6 @@ class waveAnalysis(object):
         Todo:
             There are some plotting problems for dataset spanning beyond the
             180 degree meridian that will need to be fixed.
-
-        Returns:
-            cycdata (dataframe): pandas dataframe containing cyclone track information
         """
 
         if self.cyclone is None:
@@ -1569,8 +1571,6 @@ class waveAnalysis(object):
                             print("    +   Period ", round(cycdata.period[k], 2), "s")
                             print("    +   Height ", round(cycdata.wH[k], 2), "m")
                             print(" ")
-
-        return cycdata
 
     def computeSeasonalCharacteristics(
         self, series="wh", time=None, lonlat=None, fsave=None, plot=True
