@@ -8,7 +8,6 @@ addons:
   apt:
     packages:
       - libudunits2-dev
-      - libgeos++
       - libproj-dev
       - libgeos-dev
       - libgdal-dev
