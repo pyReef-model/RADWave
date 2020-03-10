@@ -4,6 +4,12 @@ language: python
 python:
  - "3.5"
 
+env:
+    matrix:
+        - PYTHON_VERSION=3.5
+          PACKAGES="proj4=4.9.1"
+          PYTHONHASHSEED=0  # So pytest-xdist works.
+
 install: pip install -e src/
 
 script: pytest
