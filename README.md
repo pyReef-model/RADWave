@@ -2,13 +2,9 @@
 
 
 [![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave)](https://hub.docker.com/r/pyreefmodel/radwave)
-[![PyPI](https://img.shields.io/pypi/v/RADWave)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest)
+[![PyPI](https://img.shields.io/pypi/v/RADWave)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-[![Coverage Status](https://coveralls.io/repos/github/pyReef-model/RADWave/badge.svg?branch=master)](https://coveralls.io/github/pyReef-model/RADWave?branch=master)
-
-[![Build Status](https://travis-ci.com/pyReef-model/RADWave.svg?branch=master)](https://travis-ci.com/pyReef-model/RADWave)
-
-[![DOI](https://zenodo.org/badge/235496363.svg)](https://zenodo.org/badge/latestdoi/235496363)
+[![Build Status](https://travis-ci.com/pyReef-model/RADWave.svg?branch=master)](https://travis-ci.com/pyReef-model/RADWave) [![Coverage Status](https://coveralls.io/repos/github/pyReef-model/RADWave/badge.svg?branch=master)](https://coveralls.io/github/pyReef-model/RADWave?branch=master) [![DOI](https://zenodo.org/badge/235496363.svg)](https://zenodo.org/badge/latestdoi/235496363)
 
 **RADWave** documentation is found at [**radwave.readthedocs.io**](https://radwave.readthedocs.io/)
 
