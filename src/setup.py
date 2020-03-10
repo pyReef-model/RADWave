@@ -8,8 +8,7 @@ twine check dist/*
 twine upload dist/*
 """
 
-from setuptools import setup, find_packages
-from numpy.distutils.core import setup, Extension
+from setuptools import setup
 from os import path
 import io
 
@@ -18,16 +17,18 @@ with io.open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 if __name__ == "__main__":
-    setup(name = 'RADWave',
-          author            = "Tristan Salles",
-          author_email      = "tristan.salles@sydney.edu.au",
-          url               = "https://github.com/pyReef-model/RADWave",
-          version           = "0.0.2",
-          description       = "A Python interface to perform wave analysis from satellite altimeter data.",
-          long_description  = long_description,
+    setup(name='radwave',
+          author="Tristan Salles",
+          author_email="tristan.salles@sydney.edu.au",
+          url="https://github.com/pyReef-model/RADWave",
+          version="0.0.7",
+          description="A Python interface to perform wave analysis from \
+                    satellite altimeter data.",
+          long_description=long_description,
           long_description_content_type='text/markdown',
-          packages          = ['RADWave'],
-          install_requires  = [
+          packages=['RADWave'],
+          install_requires=[
+                        'pytest',
                         'numpy>=1.15.0',
                         'six>=1.11.0',
                         'setuptools>=38.4.0',
@@ -42,14 +43,14 @@ if __name__ == "__main__":
                         'scikit-image>=0.15',
                         'pymannkendall>=0'
                         ],
-          python_requires   = '>=3.3',
-          package_data      = {'RADWave': ['Notebooks/notebooks/*ipynb',
-                                          'Notebooks/notebooks/*py',
-                                          'Notebooks/dataset/*',
-                                          'Notebooks/images/*'] },
-          include_package_data = True,
-          classifiers       = ['Programming Language :: Python :: 3.3',
-                               'Programming Language :: Python :: 3.4',
-                               'Programming Language :: Python :: 3.5',
-                               'Programming Language :: Python :: 3.6']
+          python_requires='>=3.3',
+          package_data={'RADWave': ['Notebooks/notebooks/*ipynb',
+                                    'Notebooks/notebooks/*py',
+                                    'Notebooks/dataset/*',
+                                    'Notebooks/images/*']},
+          include_package_data=True,
+          classifiers=['Programming Language :: Python :: 3.3',
+                       'Programming Language :: Python :: 3.4',
+                       'Programming Language :: Python :: 3.5',
+                       'Programming Language :: Python :: 3.6']
           )

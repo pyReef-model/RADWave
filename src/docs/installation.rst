@@ -14,6 +14,7 @@ The complete list of Dependencies is available in the **src/requirements.txt** f
 .. code-block:: bash
 
   numpy>=1.15.0
+  pytest
   six>=1.11.0
   setuptools>=38.4.0
   pandas>=0.25
@@ -43,8 +44,8 @@ If you need to install it for different python versions:
 
 .. code-block:: bash
 
-  $ python2 -m pip install RADWave
-  $ python3 -m pip install RADWave
+  $ python2 -m pip install radwave
+  $ python3 -m pip install radwave
 
 To install the *development version*: **Clone the repository using**
 
@@ -84,25 +85,3 @@ On Linux, to build the dockerfile locally, we provide a script. First ensure you
 
 .. _`Docker Desktop for Mac`: https://docs.docker.com/docker-for-mac/
 .. _`Docker Desktop for Windows`: https://docs.docker.com/docker-for-windows/
-
-
-Testing installation
---------------------
-
-A test is provided to check the correct installation of the **RADWave** package.If you've cloned the source into a directory :code:`RADWave`, you may verify it as follows:
-
-Navigate the directory `src/tests` and run the tests.
-
-.. code-block:: bash
-
-  $ python2 testInstall.py
-  $ python3 testInstall.py
-
-You will need to have all dependencies installed.
-
-The following result indicates success.
-
-.. code-block:: bash
-
-  $ Test RADWave installation:: [####################] 100.0% DONE
-  $ All tests passed - RADWave installation is completed !
