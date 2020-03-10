@@ -3,12 +3,15 @@ language: python
 
 python:
  - "3.5"
+          
+addons:
+  apt:
+    packages:
+      - libudunits2-dev
+      - libproj-dev
+      - libgeos-dev
+      - libgdal-dev
 
-env:
-    matrix:
-        - PYTHON_VERSION=3.5
-          PACKAGES="proj4=4.9.1"
-          PYTHONHASHSEED=0  # So pytest-xdist works.
 
 install: pip install -e src/
 
