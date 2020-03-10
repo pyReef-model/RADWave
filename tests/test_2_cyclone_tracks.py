@@ -27,8 +27,8 @@ def test_cycloneAltimeter_processing():
                               )
 
     cyc.processAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
-    assert round(cyc.wh.mean(),3) == 2.292, "test failed because extracted mean wave height missmatch"
-    assert round(cyc.ws.mean(),3) == 8.002, "test failed because extracted mean wind speed missmatch"
+    assert pytest.approx(cyc.wh.mean(),rel=1e-3) == 2.292, "test failed because extracted mean wave height missmatch"
+    assert pytest.approx(cyc.ws.mean(),rel=1e-3) == 8.002, "test failed because extracted mean wind speed missmatch"
 
 def test_cycloneTimeseries_generation():
 
@@ -41,9 +41,9 @@ def test_cycloneTimeseries_generation():
     cyc.readAltimeterData(saveCSV = 'altimeterData.csv')
     ts = cyc.generateTimeSeries(days=30)
 
-    assert round(ts['power'].mean(),3) == 68.851, "test failed"
-    assert round(ts['wh_rolling'].min(),3) == 1.676, "test failed"
-    assert round(ts['period_rolling'].max(),3) == 7.715, "test failed"
+    assert pytest.approx(ts['power'].mean(),rel=1e-3) == 68.851, "test failed"
+    assert pytest.approx(ts['wh_rolling'].min(),rel=1e-3) == 1.676, "test failed"
+    assert pytest.approx(ts['period_rolling'].max(),rel=1e-3) == 7.715, "test failed"
 
 def test_cycloneTrack():
 
@@ -57,6 +57,6 @@ def test_cycloneTrack():
     ts = cyc.generateTimeSeries(days=30)
     track = cyc.close2Track(radius=2.,dtmax=16.)
 
-    assert round(cyc.cyclone_data['period'].max(),3) == 7.863, "test failed"
-    assert round(cyc.cyclone_data['speed'].max(),3) == 12.272, "test failed"
-    assert round(cyc.cyclone_data['wH'].max(),3) == 1.735, "test failed"
+    assert pytest.approx(cyc.cyclone_data['period'].max(),rel=1e-3) == 7.863, "test failed"
+    assert pytest.approx(cyc.cyclone_data['speed'].max(),rel=1e-3) == 12.272, "test failed"
+    assert pytest.approx(cyc.cyclone_data['wH'].max(),rel=1e-3) == 1.735, "test failed"

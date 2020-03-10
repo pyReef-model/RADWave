@@ -22,8 +22,8 @@ def test_altimeter_processing():
                                  )
 
     wclass.processAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
-    assert round(wclass.wh.mean(),3) == 2.386, "test failed because extracted mean wave height missmatch"
-    assert round(wclass.ws.mean(),3) == 8.221, "test failed because extracted mean wind speed missmatch"
+    assert pytest.approx(wclass.wh.mean(),rel=1e-3) == 2.386, "test failed because extracted mean wave height missmatch"
+    assert pytest.approx(wclass.ws.mean(),rel=1e-3) == 8.221, "test failed because extracted mean wind speed missmatch"
 
 def test_timeseries_generation():
 
@@ -36,9 +36,9 @@ def test_timeseries_generation():
     wclass.readAltimeterData(saveCSV = 'altimeterData.csv')
     ts = wclass.generateTimeSeries(days=30)
 
-    assert round(ts['power'].mean(),3) == 87.752, "test failed"
-    assert round(ts['wh_rolling'].min(),3) == 1.208, "test failed"
-    assert round(ts['period_rolling'].max(),3) == 8.028, "test failed"
+    assert pytest.approx(ts['power'].mean(),rel=1e-3) == 87.752, "test failed"
+    assert pytest.approx(ts['wh_rolling'].min(),rel=1e-3) == 1.208, "test failed"
+    assert pytest.approx(ts['period_rolling'].max(),rel=1e-3) == 8.028, "test failed"
 
 def test_wave_energy_flux():
 
@@ -50,7 +50,7 @@ def test_wave_energy_flux():
     H = 15.5
     T = 10.
     P = wclass.waveEnergyFlux(H, T, grav=9.80665, seadensity=1025.0)
-    assert round(P,3) == 4711.495, "test failed"
+    assert pytest.approx(P,rel=1e-3) == 4711.495, "test failed"
 
 def test_wave_group_velocity():
 
@@ -61,7 +61,7 @@ def test_wave_group_velocity():
                                  )
     T = 10.
     Cg = wclass.waveGroupVelocity(T, grav=9.80665)
-    assert round(Cg,3) == 15.608, "test failed"
+    assert pytest.approx(Cg,rel=1e-3) == 15.608, "test failed"
 
 def test_wave_mean_energy():
 
@@ -72,7 +72,7 @@ def test_wave_mean_energy():
                                  )
     H = 15.5
     mE = wclass.meanEnergy(H, grav=9.80665, seadensity=1025.0)
-    assert round(mE,3) == 301868.607, "test failed"
+    assert pytest.approx(mE,rel=1e-3) == 301868.607, "test failed"
 
 def test_wave_period():
 
@@ -84,7 +84,7 @@ def test_wave_period():
     H = 15.5
     U = 25.1
     wP = wclass.wavePeriod(H, U, grav=9.80665)
-    assert round(wP,3) == 18.122, "test failed"
+    assert pytest.approx(wP,rel=1e-3) == 18.122, "test failed"
 
 def test_seasonal_characteristics():
 
@@ -101,6 +101,6 @@ def test_seasonal_characteristics():
                                                       plot=False
                                                      )
 
-    assert round(wh_season['January'].mean(),3) == 2.143, "test failed"
-    assert round(wh_season['May'].min(),3) == 1.021, "test failed"
-    assert round(wh_season['October'].max(),3) == 3.246, "test failed"
+    assert pytest.approx(wh_season['January'].mean(),rel=1e-3) == 2.143, "test failed"
+    assert pytest.approx(wh_season['May'].min(),rel=1e-3) == 1.021, "test failed"
+    assert pytest.approx(wh_season['October'].max(),rel=1e-3) == 3.246, "test failed"
