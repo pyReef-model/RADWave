@@ -3,16 +3,23 @@ language: python
 
 python:
  - "3.5"
-          
+
 addons:
   apt:
     packages:
       - libudunits2-dev
+      - libgeos++
       - libproj-dev
       - libgeos-dev
       - libgdal-dev
 
+install:
+  - "python -m pip install pyproj"
+  - "python -m pip install coveralls>=1.1"
+  - "pip install -e src/"
 
-install: pip install -e src/
+script:
+  - python -m pytest -v -m --cov rasterio --cov-report term-missing
 
-script: pytest
+after_success:
+  - coveralls || echo "!! intermittent coveralls failure"
