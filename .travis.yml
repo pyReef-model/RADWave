@@ -14,6 +14,7 @@ addons:
 
 install:
   - "python -m pip install --upgrade numpy"
+  - "python -m pip install --upgrade pandas"
   - "python -m pip install pyproj"
   - "python -m pip install pytest-cov"
   - "python -m pip install coveralls>=1.1"
