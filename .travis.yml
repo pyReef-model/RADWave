@@ -18,7 +18,7 @@ install:
   - "python -m pip install pyproj"
   - "python -m pip install pytest-cov"
   - "python -m pip install coveralls>=1.1"
-  - "pip install -e ."
+  - "pip install -e src/"
 
 script:
   - pytest --cov=.
