@@ -75,7 +75,7 @@ Launch the demonstration at [mybinder.org](https://mybinder.org/v2/gh/pyReef-mod
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pyReef-model/RADWave/binder?filepath=Notebooks%2F0-StartHere.ipynb)
 
 
-![cyclone](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img1.jpg?raw=true)
+![cyclone](https://github.com/pyReef-model/RADWave/blob/master/RADWave/Notebooks/images/img1.jpg?raw=true)
 
 
 Another option will be to use the Docker container available through Kitematic **pyreefmodel/radwave**.
