@@ -2,9 +2,9 @@
 
 
 [![Docker Cloud Automated build](https://img.shields.io/docker/automated/pyreefmodel/radwave)](https://hub.docker.com/r/pyreefmodel/radwave)
-[![PyPI](https://img.shields.io/pypi/v/RADWave)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PyPI](https://img.shields.io/pypi/v/RADWave)](https://pypi.org/project/RADWave/) [![Documentation Status](https://readthedocs.org/projects/radwave/badge/?version=latest)](https://radwave.readthedocs.io/en/latest/?badge=latest)
 
-[![Build Status](https://travis-ci.com/pyReef-model/RADWave.svg?branch=master)](https://travis-ci.com/pyReef-model/RADWave) [![Coverage Status](https://coveralls.io/repos/github/pyReef-model/RADWave/badge.svg?branch=master)](https://coveralls.io/github/pyReef-model/RADWave?branch=master) [![DOI](https://zenodo.org/badge/235496363.svg)](https://zenodo.org/badge/latestdoi/235496363)
+[![DOI](https://zenodo.org/badge/235496363.svg)](https://zenodo.org/badge/latestdoi/235496363)
 
 **RADWave** documentation is found at [**radwave.readthedocs.io**](https://radwave.readthedocs.io/)
 
@@ -12,9 +12,9 @@
 
 > **Satellite radar altimeters** can be used to determine significant wave height and wind speed [Young et al., 2011]. Since the first launch of the **GEOSAT** (GEOdetic SATellite) altimeter in 1985, there has been almost continuous data collection. From these measurements one can calculate wave conditions namely wave height, period and power [Young and Donelan, 2018]. Analysis of this long-term, high resolution spatio-temporal record brings new insights into inter-annual, seasonal and decadal variations of regional wave climates.
 
-![altimeter](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img2.jpg?raw=true)
+![altimeter](https://github.com/pyReef-model/RADWave/blob/master/RADWave/Notebooks/images/img2.jpg?raw=true)
 
-**RADWave** is Python package that provides a mechanism to access altimeter datasets through web-enabled data services (THREDDS) using the Australian Ocean Data Network ([**AODN**](https://portal.aodn.org.au) database. This dataset spans from 1985-present and has already been calibrated and validated by [Ribal and Young, 2019]. **RADWave** allows  the user to query over a range of spatial and temporal scales AODN altimeter parameters in specific geographical regions and subsequently calculates significant wave heights, periods, group velocities, average wave energy densities and wave energy fluxes.  
+**RADWave** is Python package that provides a mechanism to access altimeter datasets through web-enabled data services (THREDDS). The package capabilities are illustrated based on the the Australian Ocean Data Network ([**AODN**](https://portal.aodn.org.au) database that spans from 1985-present and that has already been calibrated and validated by [Ribal and Young, 2019]. **RADWave** allows the user to query over a range of spatial and temporal scales altimeter parameters in specific geographical regions and subsequently calculates significant wave heights, periods, group velocities, average wave energy densities and wave energy fluxes.  
 
 **RADWave** can be used to easily calculate past wave conditions and infers long term wave climate variability, providing new insights on wave modal conditions, seasonal changes, long-term trends and associated modulation by climate oscillations.
 
@@ -44,7 +44,7 @@ You can install `RADWave` using the
 [`pip package manager`](https://pypi.org/project/pip/) with your version of Python:
 
 ```bash
-python3 -m pip install RADWave
+python3 -m pip install radwave
 ```
 
 ### Installing using Docker
@@ -75,7 +75,7 @@ Launch the demonstration at [mybinder.org](https://mybinder.org/v2/gh/pyReef-mod
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pyReef-model/RADWave/binder?filepath=Notebooks%2F0-StartHere.ipynb)
 
 
-![cyclone](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img1.jpg?raw=true)
+![cyclone](https://github.com/pyReef-model/RADWave/blob/master/RADWave/Notebooks/images/img1.jpg?raw=true)
 
 
 Another option will be to use the Docker container available through Kitematic **pyreefmodel/radwave**.

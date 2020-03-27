@@ -9,7 +9,7 @@ Dependencies
 You will need a working **Python 3+** (though it will work with Python 2.7) and the following packages are required:
 `numpy <http://numpy.org>`_, `scipy <https://scipy.org>`_, `pandas <https://pandas.pydata.org/>`_, `scikit-image <https://scikit-image.org/>`_, `seaborn <https://seaborn.pydata.org>`_, `geopy <https://pypi.org/project/geopy/>`_, `cartopy <https://scitools.org.uk/cartopy/docs/latest/>`_, `netCDF4 <https://pypi.org/project/netCDF4/>`_, `shapely <https://pypi.org/project/Shapely/>`_, `pymannkendall <https://pypi.org/project/pymannkendall/>`_.
 
-The complete list of Dependencies is available in the **src/requirements.txt** file and looks like:
+The complete list of Dependencies is available in the **requirements.txt** file and looks like:
 
 .. code-block:: bash
 
@@ -55,7 +55,6 @@ Navigate into the RADWave directory and run
 
 .. code-block:: bash
 
-  $ cd src/
   $ pip install -r requirements.txt
   $ pip install .
 
