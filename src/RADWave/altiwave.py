@@ -120,7 +120,7 @@ class waveAnalysis(object):
         bbox=None,
         stime=None,
         etime=None,
-        satNames=None,
+        satNames=None
     ):
 
         if cycloneCSV is not None:
@@ -250,7 +250,9 @@ class waveAnalysis(object):
 
         return getFiles
 
-    def processAltimeterData(self, altimeter_pick="all", saveCSV="altimeterData.csv"):
+    def processAltimeterData(
+        self, altimeter_pick="all", saveCSV="altimeterData.csv"
+    ):
         """
         From the list of OPeNDAP data URL’s this function extracts the
         altimeter data information.
@@ -349,16 +351,9 @@ class waveAnalysis(object):
                         df = pd.DataFrame(data)
 
                         df2 = pd.DataFrame(timing[ids], columns=["date"])
-                        dtime = df2["date"].values.astype("datetime64[M]")
-                        print(df2["date"])
-                        dtime = pd.DatetimeIndex(df2["date"].apply(pd.Timestamp))
-                        print(dtime)
-                        df2["year"] = dtime.year
-                        df2["month"] = dtime.month
-                        df2["day"] = dtime.day
-                        # df2["year"] = pd.DatetimeIndex(df2["date"]).year
-                        # df2["month"] = pd.DatetimeIndex(df2["date"]).month
-                        # df2["day"] = pd.DatetimeIndex(df2["date"]).day
+                        df2["year"] = pd.DatetimeIndex(df2["date"]).year
+                        df2["month"] = pd.DatetimeIndex(df2["date"]).month
+                        df2["day"] = pd.DatetimeIndex(df2["date"]).day
 
                         dataframe = pd.concat([df, df2], axis=1, sort=False)
                         dataframe = dataframe.drop(["date"], axis=1)
@@ -398,7 +393,8 @@ class waveAnalysis(object):
                         )
                         frame["altimeter"] = self.nameSat[u]
                         if p > 0:
-                            combineframe = pd.concat([combineframe, frame], sort=True)
+                            combineframe = pd.concat([combineframe, frame],
+                                                     sort=True)
                         else:
                             combineframe = frame
                             p += 1
@@ -429,7 +425,9 @@ class waveAnalysis(object):
             self.times = data.values[:, 3]
             self.ws = np.asarray(data.values[:, 4], dtype=np.float64)
             print(
-                " \nProcessing altimeter dataset took: ", int(time.clock() - t0), "s",
+                " \nProcessing altimeter dataset took: ",
+                int(time.clock() - t0),
+                "s",
             )
         else:
             print("No altimeter data found...")
@@ -534,7 +532,8 @@ class waveAnalysis(object):
             )
         else:
             ax.set_extent(
-                [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
+                [extent[0], extent[1], extent[2], extent[3]],
+                crs=ccrs.PlateCarree()
             )
 
         # Add the Stamen data
@@ -690,7 +689,8 @@ class waveAnalysis(object):
             )
         else:
             ax.set_extent(
-                [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.Geodetic()
+                [extent[0], extent[1], extent[2], extent[3]],
+                crs=ccrs.Geodetic()
             )
 
         # Add the Stamen data
@@ -763,7 +763,8 @@ class waveAnalysis(object):
         ring = LinearRing(list(zip(rlons, rlats)))
         if self.cyclone is None:
             ax.add_geometries(
-                [ring], ccrs.PlateCarree(), facecolor="none", edgecolor="k", linewidth=2
+                [ring], ccrs.PlateCarree(), facecolor="none",
+                edgecolor="k", linewidth=2
             )
         else:
             ax.add_geometries(
@@ -971,7 +972,8 @@ class waveAnalysis(object):
         # Days averaged parameters.
         self.days = int(days)
 
-        meanwave = wavedf.rolling(str(self.days) + "D", on="date", min_periods=1).mean()
+        meanwave = wavedf.rolling(str(self.days) + "D", on="date",
+                                  min_periods=1).mean()
 
         self.wh_rolling = meanwave["wh"]
         self.period_rolling = meanwave["period"]
