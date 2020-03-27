@@ -12,7 +12,7 @@
 
 > **Satellite radar altimeters** can be used to determine significant wave height and wind speed [Young et al., 2011]. Since the first launch of the **GEOSAT** (GEOdetic SATellite) altimeter in 1985, there has been almost continuous data collection. From these measurements one can calculate wave conditions namely wave height, period and power [Young and Donelan, 2018]. Analysis of this long-term, high resolution spatio-temporal record brings new insights into inter-annual, seasonal and decadal variations of regional wave climates.
 
-![altimeter](https://github.com/pyReef-model/RADWave/blob/master/src/RADWave/Notebooks/images/img2.jpg?raw=true)
+![altimeter](https://github.com/pyReef-model/RADWave/blob/master/RADWave/Notebooks/images/img2.jpg?raw=true)
 
 **RADWave** is Python package that provides a mechanism to access altimeter datasets through web-enabled data services (THREDDS). The package capabilities are illustrated based on the the Australian Ocean Data Network ([**AODN**](https://portal.aodn.org.au) database that spans from 1985-present and that has already been calibrated and validated by [Ribal and Young, 2019]. **RADWave** allows the user to query over a range of spatial and temporal scales altimeter parameters in specific geographical regions and subsequently calculates significant wave heights, periods, group velocities, average wave energy densities and wave energy fluxes.  
 
