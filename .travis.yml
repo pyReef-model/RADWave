@@ -17,10 +17,10 @@ install:
   - "python -m pip install pyproj"
   - "python -m pip install pytest-cov"
   - "python -m pip install coveralls>=1.1"
-  - "pip install -e src/"
+  - "pip install -e ."
 
 script:
-  - pytest --cov=src/
+  - pytest --cov=.
 
 after_success:
   - coveralls
