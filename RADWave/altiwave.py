@@ -347,6 +347,8 @@ class waveAnalysis(object):
                             "time": tt[ids],
                         }
                         df = pd.DataFrame(data)
+
+                        df2 = pd.DataFrame(timing[ids], columns=["date"])
                         df2["date"] = pd.to_datetime(df2["date"])
                         df2["year"] = pd.DatetimeIndex(df2["date"]).year
                         df2["month"] = pd.DatetimeIndex(df2["date"]).month
