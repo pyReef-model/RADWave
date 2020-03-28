@@ -347,18 +347,10 @@ class waveAnalysis(object):
                             "time": tt[ids],
                         }
                         df = pd.DataFrame(data)
-
-                        df2 = pd.DataFrame(timing[ids], columns=["date"])
-                        dtime = df2["date"].values.astype("datetime64[M]")
-                        print(df2["date"])
-                        dtime = pd.DatetimeIndex(df2["date"].apply(pd.Timestamp))
-                        print(dtime)
-                        df2["year"] = dtime.year
-                        df2["month"] = dtime.month
-                        df2["day"] = dtime.day
-                        # df2["year"] = pd.DatetimeIndex(df2["date"]).year
-                        # df2["month"] = pd.DatetimeIndex(df2["date"]).month
-                        # df2["day"] = pd.DatetimeIndex(df2["date"]).day
+                        df2["date"] = pd.to_datetime(df2["date"])
+                        df2["year"] = pd.DatetimeIndex(df2["date"]).year
+                        df2["month"] = pd.DatetimeIndex(df2["date"]).month
+                        df2["day"] = pd.DatetimeIndex(df2["date"]).day
 
                         dataframe = pd.concat([df, df2], axis=1, sort=False)
                         dataframe = dataframe.drop(["date"], axis=1)

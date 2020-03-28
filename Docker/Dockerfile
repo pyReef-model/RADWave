@@ -17,8 +17,8 @@ RUN apt-get update -qq && \
 
 ### RADWave - Notebooks
 RUN python3 -m pip install --no-cache-dir \
-    radwave==0.0.8
-
+    radwave==0.1.0
+RUN pwd; ls
 ENV MODULE_DIR="src"
 ADD --chown=jovyan:jovyan $MODULE_DIR $MODULE_DIR
 RUN   cd $MODULE_DIR && python3 -m pip install --no-cache-dir --no-deps --upgrade .
