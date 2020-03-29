@@ -14,10 +14,11 @@ addons:
 
 install:
   - "python -m pip install --upgrade numpy"
-  - "python -m pip install --upgrade pandas"
+  - "python -m pip install pandas==0.25.0"
   - "python -m pip install pyproj"
   - "python -m pip install pytest-cov"
   - "python -m pip install coveralls>=1.1"
+  - "python -m pip install cftime==1.0.3.4"
   - "pip install -e ."
 
 script:
