@@ -29,4 +29,13 @@ import os
 Notebooks_Path = "/home/user_data/Notebooks"
 Destination_Path = "/home/jovyan/RADWave/Notebooks"
 
-ct = _dir_util.copy_tree(Notebooks_Path, Destination_Path, preserve_mode=1, preserve_times=1, preserve_symlinks=1, update=True, verbose=True, dry_run=0)
+ct = _dir_util.copy_tree(
+    Notebooks_Path,
+    Destination_Path,
+    preserve_mode=1,
+    preserve_times=1,
+    preserve_symlinks=1,
+    update=True,
+    verbose=True,
+    dry_run=0,
+)

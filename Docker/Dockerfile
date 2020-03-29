@@ -11,21 +11,27 @@ FROM ${FROMIMG_ARG}
 USER root
 
 RUN apt-get update -qq && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq  --no-install-recommends \
     gettext && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ### RADWave - Notebooks
 RUN python3 -m pip install --no-cache-dir \
     radwave==0.1.0
-RUN pwd; ls
+
+RUN git clone https://github.com/pyReef-model/RADWave && \
+    mkdir src && \
+    mv RADWave/* src
+
 ENV MODULE_DIR="src"
-ADD --chown=jovyan:jovyan $MODULE_DIR $MODULE_DIR
+#ADD --chown=jovyan:jovyan $MODULE_DIR $MODULE_DIR
 RUN   cd $MODULE_DIR && python3 -m pip install --no-cache-dir --no-deps --upgrade .
+
+#RUN   python3 -m pip  install --no-cache-dir --no-deps --upgrade .
 
 
 RUN ipython3 -c 'import RADWave; RADWave.documentation.install_documentation(path="Notebooks")'
-ADD  --chown=jovyan:jovyan Notebooks/0-StartHere.ipynb Notebooks/0-StartHere.ipynb
+ADD --chown=jovyan:jovyan Notebooks/0-StartHere.ipynb Notebooks/0-StartHere.ipynb
 
 
 RUN python3 -m pip install --no-cache-dir --upgrade nose \
