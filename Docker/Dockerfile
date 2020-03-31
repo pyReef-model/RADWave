@@ -17,7 +17,7 @@ RUN apt-get update -qq && \
 
 ### RADWave - Notebooks
 RUN python3 -m pip install --no-cache-dir \
-    radwave==0.1.2
+    radwave==1.0.0
 
 RUN git clone https://github.com/pyReef-model/RADWave
 
