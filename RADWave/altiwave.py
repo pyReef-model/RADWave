@@ -281,7 +281,7 @@ class waveAnalysis(object):
 
         print("Processing Altimeter Dataset \n")
 
-        t0 = time.clock()
+        t0 = time.process_time()
         p = 0
         combineframe = None
 
@@ -423,7 +423,7 @@ class waveAnalysis(object):
             self.times = data.values[:, 3]
             self.ws = np.asarray(data.values[:, 4], dtype=np.float64)
             print(
-                " \nProcessing altimeter dataset took: ", int(time.clock() - t0), "s",
+                " \nProcessing altimeter dataset took: ", int(time.process_time() - t0), "s",
             )
         else:
             print("No altimeter data found...")
