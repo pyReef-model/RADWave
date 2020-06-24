@@ -166,6 +166,7 @@ class waveAnalysis(object):
                     "JASON-3",
                     "SARAL",
                     "SENTINEL-3A",
+                    "SENTINEL-3B",
                     "CRYOSAT-2",
                     "ENVISAT",
                     "GEOSAT",
@@ -250,7 +251,9 @@ class waveAnalysis(object):
 
         return getFiles
 
-    def processAltimeterData(self, altimeter_pick="all", saveCSV="altimeterData.csv"):
+    def processAltimeterData(
+        self, max_qc=5, altimeter_pick="all", saveCSV="altimeterData.csv"
+    ):
         """
         From the list of OPeNDAP data URL’s this function extracts the
         altimeter data information.
@@ -275,6 +278,7 @@ class waveAnalysis(object):
             a latency when querying the NetCDF files.
 
         Args:
+            max_qc: maximum quality control flag that will be used for significant wave height [default: 5]
             altimeter_pick (list): list of satellites to use for the analysis as an example AODN portal provide the record from 10 satellites for altimeter data [default: 'all']
             saveCSV (str): filename used to save processed altimeter data obtained from the OPeNDAP web service [default: 'altimeterData.csv']
         """
@@ -322,7 +326,6 @@ class waveAnalysis(object):
                     )[0]
 
                     reduceID = reduce(np.intersect1d, (latbound, lonbound, timebound))
-
                     if len(reduceID) > 0:
                         ws = ncs.variables["WSPD_CAL"][:]
                         if self.nameSat[u] == "SARAL":
@@ -334,68 +337,71 @@ class waveAnalysis(object):
                             qc = ncs.variables["SWH_KU_quality_control"][:]
                             back = ncs.variables["SIG0_KU"][:]
 
-                        hqlimit = np.where(np.logical_and(wh > 0, qc == 1))[0]
+                        hqlimit = np.where(np.logical_and(wh > 0, qc <= max_qc))[0]
                         ids = np.intersect1d(hqlimit, reduceID)
 
-                        data = {
-                            "ws": ws[ids],
-                            "wh": wh[ids],
-                            "qc": qc[ids],
-                            "back": back[ids],
-                            "lats": lats[ids],
-                            "lons": lons[ids],
-                            "time": tt[ids],
-                        }
-                        df = pd.DataFrame(data)
+                        if len(ids) > 0:
+                            data = {
+                                "ws": ws[ids],
+                                "wh": wh[ids],
+                                "qc": qc[ids],
+                                "back": back[ids],
+                                "lats": lats[ids],
+                                "lons": lons[ids],
+                                "time": tt[ids],
+                            }
+                            df = pd.DataFrame(data)
+                            df = df.dropna()
+                            df2 = pd.DataFrame(timing[ids], columns=["date"])
+                            df2["date"] = pd.to_datetime(df2["date"])
+                            df2["year"] = pd.DatetimeIndex(df2["date"]).year
+                            df2["month"] = pd.DatetimeIndex(df2["date"]).month
+                            df2["day"] = pd.DatetimeIndex(df2["date"]).day
 
-                        df2 = pd.DataFrame(timing[ids], columns=["date"])
-                        df2["date"] = pd.to_datetime(df2["date"])
-                        df2["year"] = pd.DatetimeIndex(df2["date"]).year
-                        df2["month"] = pd.DatetimeIndex(df2["date"]).month
-                        df2["day"] = pd.DatetimeIndex(df2["date"]).day
+                            dataframe = pd.concat([df, df2], axis=1, sort=False)
+                            dataframe = dataframe.drop(["date"], axis=1)
 
-                        dataframe = pd.concat([df, df2], axis=1, sort=False)
-                        dataframe = dataframe.drop(["date"], axis=1)
-
-                        time_m = dataframe.groupby(["year", "month", "day"])[
-                            ["time"]
-                        ].apply(np.median)
-                        time_m.name = "time"
-                        qc_m = dataframe.groupby(["year", "month", "day"])[
-                            ["qc"]
-                        ].apply(np.median)
-                        qc_m.name = "qc"
-                        back_m = dataframe.groupby(["year", "month", "day"])[
-                            ["back"]
-                        ].apply(np.median)
-                        back_m.name = "back"
-                        wh_m = dataframe.groupby(["year", "month", "day"])[
-                            ["wh"]
-                        ].apply(np.median)
-                        wh_m.name = "wh"
-                        ws_m = dataframe.groupby(["year", "month", "day"])[
-                            ["ws"]
-                        ].apply(np.median)
-                        ws_m.name = "ws"
-                        lats_m = dataframe.groupby(["year", "month", "day"])[
-                            ["lats"]
-                        ].apply(np.median)
-                        lats_m.name = "lat"
-                        lons_m = dataframe.groupby(["year", "month", "day"])[
-                            ["lons"]
-                        ].apply(np.median)
-                        lons_m.name = "lon"
-                        frame = pd.concat(
-                            [qc_m, wh_m, ws_m, back_m, lats_m, lons_m, time_m],
-                            axis=1,
-                            sort=False,
-                        )
-                        frame["altimeter"] = self.nameSat[u]
-                        if p > 0:
-                            combineframe = pd.concat([combineframe, frame], sort=True)
-                        else:
-                            combineframe = frame
-                            p += 1
+                            time_m = dataframe.groupby(["year", "month", "day"])[
+                                ["time"]
+                            ].apply(np.median)
+                            time_m.name = "time"
+                            qc_m = dataframe.groupby(["year", "month", "day"])[
+                                ["qc"]
+                            ].apply(np.median)
+                            qc_m.name = "qc"
+                            back_m = dataframe.groupby(["year", "month", "day"])[
+                                ["back"]
+                            ].apply(np.median)
+                            back_m.name = "back"
+                            wh_m = dataframe.groupby(["year", "month", "day"])[
+                                ["wh"]
+                            ].apply(np.median)
+                            wh_m.name = "wh"
+                            ws_m = dataframe.groupby(["year", "month", "day"])[
+                                ["ws"]
+                            ].apply(np.median)
+                            ws_m.name = "ws"
+                            lats_m = dataframe.groupby(["year", "month", "day"])[
+                                ["lats"]
+                            ].apply(np.median)
+                            lats_m.name = "lat"
+                            lons_m = dataframe.groupby(["year", "month", "day"])[
+                                ["lons"]
+                            ].apply(np.median)
+                            lons_m.name = "lon"
+                            frame = pd.concat(
+                                [qc_m, wh_m, ws_m, back_m, lats_m, lons_m, time_m],
+                                axis=1,
+                                sort=False,
+                            )
+                            frame["altimeter"] = self.nameSat[u]
+                            if p > 0:
+                                combineframe = pd.concat(
+                                    [combineframe, frame], sort=True
+                                )
+                            else:
+                                combineframe = frame
+                                p += 1
 
         if p > 0:
             self.saveCSV = saveCSV
@@ -423,7 +429,9 @@ class waveAnalysis(object):
             self.times = data.values[:, 3]
             self.ws = np.asarray(data.values[:, 4], dtype=np.float64)
             print(
-                " \nProcessing altimeter dataset took: ", int(time.process_time() - t0), "s",
+                " \nProcessing altimeter dataset took: ",
+                int(time.process_time() - t0),
+                "s",
             )
         else:
             print("No altimeter data found...")
@@ -691,7 +699,7 @@ class waveAnalysis(object):
         ax.add_image(stamen_terrain, zoom)
 
         ax.set_title(title)
-        ax.coastlines(resolution="10m")
+        # ax.coastlines(resolution="10m")
 
         ax.scatter(
             [self.lon],
@@ -947,7 +955,7 @@ class waveAnalysis(object):
         self.speed = self.waveGroupVelocity(self.T)
         self.power1 = self.waveEnergyFlux(self.wh, self.T)
 
-        sort_time = netCDF4.num2date(self.times, self.time_units)
+        sort_time = netCDF4.num2date(self.times.astype(float), self.time_units)
 
         wavedf = pd.DataFrame(
             data={
