@@ -13,7 +13,7 @@ The most simple code lines to use **RADWave** functions is summarised below
 
   wa = rwave.waveAnalysis(altimeterURL='../dataset/IMOSURLs.txt', bbox=[152.0,155.0,-36.0,-34.0],
                   stime=[1985,1,1], etime=[2018,12,31])
-  wa.processAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
+  wa.processAltimeterData(max_qc=3, altimeter_pick='all', saveCSV = 'altimeterData.csv')
   wa.visualiseData(title="Altimeter data tracks", extent=[149.,158.,-38.,-32.],
                  addcity=['Sydney', 151.2093, -33.8688], markersize=40, zoom=8,
                  fsize=(8, 7), fsave='altimeterdata')
@@ -76,7 +76,7 @@ After class initialisation querying the actual dataset is realised by calling th
 
 .. code-block:: python
 
-  wa.processAltimeterData(altimeter_pick='all', saveCSV = 'altimeterData.csv')
+  wa.processAltimeterData(max_qc=1, altimeter_pick='all', saveCSV = 'altimeterData.csv')
 
 
 The function can take some times to execute depending on the number of :code:`NETCDF` files to load and the size of the dataset to query.

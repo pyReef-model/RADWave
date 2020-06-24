@@ -31,7 +31,7 @@ def test_altimeter_processing():
 
     # wclass.readAltimeterData(saveCSV="tests/altimeterData1.csv")
     wclass.processAltimeterData(
-        altimeter_pick="all", saveCSV="tests/altimeterData1.csv"
+        max_qc=1, altimeter_pick="all", saveCSV="tests/altimeterData1.csv"
     )
     assert (
         pytest.approx(wclass.wh.mean(), rel=1e-3) == 2.386

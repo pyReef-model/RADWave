@@ -35,7 +35,9 @@ def test_cycloneAltimeter_processing():
     )
 
     # cyc.readAltimeterData(saveCSV="tests/altimeterData2.csv")
-    cyc.processAltimeterData(altimeter_pick="all", saveCSV="tests/altimeterData2.csv")
+    cyc.processAltimeterData(
+        max_qc=1, altimeter_pick="all", saveCSV="tests/altimeterData2.csv"
+    )
     assert (
         pytest.approx(cyc.wh.mean(), rel=1e-3) == 2.292
     ), "test failed because extracted mean wave height missmatch"
