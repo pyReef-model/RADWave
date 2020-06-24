@@ -12,10 +12,10 @@ def test_waveAnalysis_class_building():
     )
 
     satName = ["JASON-2", "ENVISAT", "TOPEX"]
-    assert wclass.satNb == 10, (
+    assert wclass.satNb == 11, (
         "test failed because satellites number equals "
         + str(wclass.satNb)
-        + " instead of 10."
+        + " instead of 11."
     )
     assert wclass.nameSat == satName, "test failed because satellites names missmatch "
 

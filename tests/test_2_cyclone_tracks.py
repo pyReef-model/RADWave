@@ -16,9 +16,9 @@ def test_trackCyclone_class_building():
     assert cyc.cyclone["name"][0] == "YASI", "test failed "
 
     satName = ["JASON-2", "CRYOSAT-2", "ENVISAT"]
-    assert cyc.satNb == 10, (
+    assert cyc.satNb == 11, (
         "test failed because satellites number equals "
-        + str(wclass.satNb)
+        + str(cyc.satNb)
         + " instead of 10."
     )
     assert cyc.nameSat == satName, "test failed because satellites names missmatch "
