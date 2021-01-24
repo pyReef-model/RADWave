@@ -317,7 +317,7 @@ class waveAnalysis(object):
                     # Get desired time interval
                     time_var = ncs.variables["TIME"]
                     tt = ncs.variables["TIME"][:]
-                    timing = netCDF4.num2date(tt, time_var.units
+                    timing = netCDF4.num2date(tt, time_var.units,
                                              only_use_cftime_datetimes=False,
                                              only_use_python_datetimes=True)
                     self.time_units = time_var.units
