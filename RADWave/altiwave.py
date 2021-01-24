@@ -327,16 +327,16 @@ class waveAnalysis(object):
 
                     reduceID = reduce(np.intersect1d, (latbound, lonbound, timebound))
                     if len(reduceID) > 0:
+                        keysname = list(ncs.variables.keys())
                         ws = ncs.variables["WSPD_CAL"][:]
-                        if self.nameSat[u] == "SARAL":
-                            wh = ncs.variables["SWH_KA_CAL"][:]
-                            qc = ncs.variables["SWH_KA_quality_control"][:]
-                            back = ncs.variables["SIG0_KA"][:]
-                        else:
+                        if 'SWH_KU_CAL' in keysname:
                             wh = ncs.variables["SWH_KU_CAL"][:]
                             qc = ncs.variables["SWH_KU_quality_control"][:]
                             back = ncs.variables["SIG0_KU"][:]
-
+                        elif 'SWH_KA_CAL' in keysname:
+                            wh = ncs.variables["SWH_KA_CAL"][:]
+                            qc = ncs.variables["SWH_KA_quality_control"][:]
+                            back = ncs.variables["SIG0_KA"][:]
                         hqlimit = np.where(np.logical_and(wh > 0, qc <= max_qc))[0]
                         ids = np.intersect1d(hqlimit, reduceID)
 
