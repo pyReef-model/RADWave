@@ -572,7 +572,7 @@ class waveAnalysis(object):
             zorder=5,
         )
 
-        geodetic_transform = ccrs.Geodetic()._as_mpl_transform(ax)
+        geodetic_transform = ccrs.PlateCarree()._as_mpl_transform(ax)
         text_transform = offset_copy(geodetic_transform, units="dots", y=-30)
 
         cycloneyear = self.cyclone["datetime"].dt.year
@@ -690,18 +690,18 @@ class waveAnalysis(object):
         if extent is None:
             ax.set_extent(
                 [self.lonmin, self.lonmax, self.latmin, self.latmax],
-                crs=ccrs.Geodetic(),
+                crs=ccrs.PlateCarree(),
             )
         else:
             ax.set_extent(
-                [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.Geodetic()
+                [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
             )
 
         # Add the Stamen data
         ax.add_image(stamen_terrain, zoom)
 
         ax.set_title(title)
-        # ax.coastlines(resolution="10m")
+        ax.coastlines(resolution="10m")
 
         ax.scatter(
             [self.lon],
@@ -712,12 +712,12 @@ class waveAnalysis(object):
             edgecolor="black",
             linewidth="0.5",
             alpha=0.7,
-            transform=ccrs.Geodetic(),
+            transform=ccrs.PlateCarree(),
         )
 
         # Use the cartopy interface to create a matplotlib transform object
         # for the Geodetic coordinate system.
-        geodetic_transform = ccrs.Geodetic()._as_mpl_transform(ax)
+        geodetic_transform = ccrs.PlateCarree()._as_mpl_transform(ax)
         text_transform = offset_copy(geodetic_transform, units="dots", x=-12)
 
         # Cyclone track
@@ -749,7 +749,7 @@ class waveAnalysis(object):
                 edgecolor="black",
                 linewidth="0.5",
                 alpha=0.7,
-                transform=ccrs.Geodetic(),
+                transform=ccrs.PlateCarree(),
             )
             ax.text(
                 lon_city,
@@ -1410,17 +1410,17 @@ class waveAnalysis(object):
             if extent is None:
                 ax.set_extent(
                     [self.lonmin, self.lonmax, self.latmin, self.latmax],
-                    crs=ccrs.Geodetic(),
+                    crs=ccrs.PlateCarree(),
                 )
             else:
                 ax.set_extent(
-                    [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.Geodetic()
+                    [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
                 )
 
             ax.add_image(stamen_terrain, zoom)
             ax.coastlines(resolution="10m")
 
-            geodetic_transform = ccrs.Geodetic()._as_mpl_transform(ax)
+            geodetic_transform = ccrs.PlateCarree()._as_mpl_transform(ax)
             text_transform = offset_copy(geodetic_transform, units="dots", x=-12)
 
             # Cyclone track
@@ -1500,7 +1500,7 @@ class waveAnalysis(object):
                     edgecolor="black",
                     linewidth="0.5",
                     alpha=0.7,
-                    transform=ccrs.Geodetic(),
+                    transform=ccrs.PlateCarree(),
                 )
 
                 ax.text(
