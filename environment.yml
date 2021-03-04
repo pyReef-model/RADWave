@@ -1,0 +1,24 @@
+name: radwave
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pandas
+  - scipy
+  - matplotlib
+  - netCDF4
+  - matplotlib
+  - numpy
+  - scikit-image
+  - shapely
+  - cftime
+  - jupyter
+  - ipython
+  - seaborn
+  - geopy
+  - cartopy
+  - pip:
+    - cmocean
+    - pymannkendall
+    - radwave
