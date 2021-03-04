@@ -47,6 +47,19 @@ You can install `RADWave` using the
 python3 -m pip install radwave
 ```
 
+### Installing using conda
+
+You can install `RADWave` using **conda** by downloading the repository from GitHub. Then you will
+use the environment.yml to create the environment. Open a terminal on Linux/Mac or Anaconda Prompt on Windows:
+
+```bash
+cd RADWave/Notebooks
+conda env create -f environment.yml
+conda env update --file environment.yml
+conda activate radwave
+jupyter notebook
+```
+
 ### Installing using Docker
 
 A more straightforward installation which does not depend on specific compilers relies on the [docker](http://www.docker.com) virtualisation system.
