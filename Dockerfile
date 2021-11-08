@@ -15,9 +15,11 @@ RUN apt-get update -qq && \
     gettext libffi-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install --upgrade pip
-
 ### RADWave - Notebooks
+RUN python3 -m pip install --no-cache-dir \
+    radwave==1.0.2
+
+RUN git clone https://github.com/pyReef-model/RADWave
 
 ENV MODULE_DIR="src"
 ADD --chown=jovyan:jovyan $MODULE_DIR $MODULE_DIR
@@ -28,7 +30,7 @@ RUN ipython3 -c 'import RADWave; RADWave.documentation.install_documentation(pat
 ADD  --chown=jovyan:jovyan Notebooks/0-StartHere.ipynb Notebooks/0-StartHere.ipynb
 
 
-RUN python3 -m pip install --no-cache-dir --upgrade nose geopy \
+RUN python3 -m pip install --no-cache-dir --upgrade nose \
    jupyterhub
 
 RUN mkdir -p /usr/local/files && chown -R jovyan:jovyan /usr/local/files
