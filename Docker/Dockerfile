@@ -15,6 +15,9 @@ RUN apt-get update -qq && \
     gettext && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
+RUN python3 -m pip install --upgrade pip
+
 ### RADWave - Notebooks
 RUN python3 -m pip install --no-cache-dir \
     radwave==0.0.8
