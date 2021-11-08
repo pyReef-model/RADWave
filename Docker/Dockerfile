@@ -15,14 +15,13 @@ RUN apt-get update -qq && \
     gettext && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
-RUN python3 -m pip install --upgrade pip
-
 ### RADWave - Notebooks
 RUN python3 -m pip install --no-cache-dir \
-    radwave==0.0.8
+    radwave==1.0.2
 
-ENV MODULE_DIR="src"
+RUN git clone https://github.com/pyReef-model/RADWave
+
+ENV MODULE_DIR="RADWave"
 ADD --chown=jovyan:jovyan $MODULE_DIR $MODULE_DIR
 RUN   cd $MODULE_DIR && python3 -m pip install --no-cache-dir --no-deps --upgrade .
 
