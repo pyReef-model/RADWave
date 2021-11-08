@@ -16,6 +16,10 @@ RUN apt-get update -qq && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ### RADWave - Notebooks
+
+RUN python3 -m pip update pip
+RUN python3 -m pip install notebook jupyterlab
+
 RUN python3 -m pip install --no-cache-dir \
     radwave==1.0.2
 
