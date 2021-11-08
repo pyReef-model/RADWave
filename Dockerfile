@@ -77,7 +77,7 @@ ENV START_NB=$START_NB_ARG
 
 
 # Trust all notebooks
-RUN find -name \*.ipynb  -print0 | xargs -0 jupyter trust
+#RUN find -name \*.ipynb  -print0 | xargs -0 jupyter trust
 
 # expose notebook port server port
 EXPOSE $NB_PORT
