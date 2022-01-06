@@ -317,9 +317,12 @@ class waveAnalysis(object):
                     # Get desired time interval
                     time_var = ncs.variables["TIME"]
                     tt = ncs.variables["TIME"][:]
-                    timing = netCDF4.num2date(tt, time_var.units,
-                                             only_use_cftime_datetimes=False,
-                                             only_use_python_datetimes=True)
+                    timing = netCDF4.num2date(
+                        tt,
+                        time_var.units,
+                        only_use_cftime_datetimes=False,
+                        only_use_python_datetimes=True,
+                    )
                     self.time_units = time_var.units
                     timebound = np.where(
                         np.logical_and(
@@ -331,11 +334,11 @@ class waveAnalysis(object):
                     if len(reduceID) > 0:
                         keysname = list(ncs.variables.keys())
                         ws = ncs.variables["WSPD_CAL"][:]
-                        if 'SWH_KU_CAL' in keysname:
+                        if "SWH_KU_CAL" in keysname:
                             wh = ncs.variables["SWH_KU_CAL"][:]
                             qc = ncs.variables["SWH_KU_quality_control"][:]
                             back = ncs.variables["SIG0_KU"][:]
-                        elif 'SWH_KA_CAL' in keysname:
+                        elif "SWH_KA_CAL" in keysname:
                             wh = ncs.variables["SWH_KA_CAL"][:]
                             qc = ncs.variables["SWH_KA_quality_control"][:]
                             back = ncs.variables["SIG0_KA"][:]
@@ -633,8 +636,8 @@ class waveAnalysis(object):
             alpha=0.5,
             linestyle="--",
         )
-        gl.xlabels_top = False
-        gl.ylabels_left = False
+        gl.top_labels = False
+        gl.left_labels = False
         gl.xformatter = LONGITUDE_FORMATTER
         gl.yformatter = LATITUDE_FORMATTER
 
@@ -787,8 +790,8 @@ class waveAnalysis(object):
             alpha=0.5,
             linestyle="--",
         )
-        gl.xlabels_top = False
-        gl.ylabels_left = False
+        gl.top_labels = False
+        gl.left_labels = False
         gl.xformatter = LONGITUDE_FORMATTER
         gl.yformatter = LATITUDE_FORMATTER
 
@@ -957,9 +960,12 @@ class waveAnalysis(object):
         self.speed = self.waveGroupVelocity(self.T)
         self.power1 = self.waveEnergyFlux(self.wh, self.T)
 
-        sort_time = netCDF4.num2date(self.times.astype(float), self.time_units,
-                                     only_use_cftime_datetimes=False,
-                                     only_use_python_datetimes=True)
+        sort_time = netCDF4.num2date(
+            self.times.astype(float),
+            self.time_units,
+            only_use_cftime_datetimes=False,
+            only_use_python_datetimes=True,
+        )
 
         wavedf = pd.DataFrame(
             data={
@@ -1544,8 +1550,8 @@ class waveAnalysis(object):
                 alpha=0.5,
                 linestyle="--",
             )
-            gl.xlabels_top = False
-            gl.ylabels_left = False
+            gl.top_labels = False
+            gl.left_labels = False
             gl.xformatter = LONGITUDE_FORMATTER
             gl.yformatter = LATITUDE_FORMATTER
 
