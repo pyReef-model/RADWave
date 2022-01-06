@@ -43,7 +43,7 @@ if __name__ == "__main__":
             "scikit-image>=0.15",
             "pymannkendall>=0",
         ],
-        python_requires=">=3.3",
+        python_requires=">=3.5",
         package_data={
             "RADWave": [
                 "Notebooks/notebooks/*ipynb",
