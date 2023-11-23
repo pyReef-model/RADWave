@@ -4,7 +4,7 @@ channels:
 dependencies:
   - python=3.8
   - pip
-  - pandas
+  - pandas=1.5.3
   - scipy
   - matplotlib
   - netCDF4
