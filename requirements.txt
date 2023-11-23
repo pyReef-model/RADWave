@@ -2,7 +2,7 @@ numpy>=1.16.1
 pytest
 six>=1.11.0
 setuptools>=38.4.0
-pandas==0.25.0
+pandas==1.5.3
 seaborn>=0.9
 matplotlib>=3.0
 geopy>=1.20
