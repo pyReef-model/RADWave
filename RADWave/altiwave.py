@@ -26,7 +26,7 @@ try:
     import cartopy
     import cartopy.geodesic
     import cartopy.crs as ccrs
-    import cartopy.io.img_tiles as cimgt
+    import cartopy.feature as cfeature  
     from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 except ImportError:
     print("cartopy is required and needs to be installed via pip")
@@ -513,8 +513,6 @@ class waveAnalysis(object):
 
         Note:
             This function relies on **cartopy** and **matplotlib** libraries.
-            We use cartopy’s ability to draw map tiles which are downloaded on
-            demand from the **Stamen tile server**.
 
         Todo:
             There are some plotting problems for dataset spanning beyond the
@@ -525,13 +523,11 @@ class waveAnalysis(object):
             *lat* & *datetime*.
         """
 
-        # Create a Stamen terrain background instance.
-        stamen_terrain = cimgt.Stamen("terrain-background")
-
+        # Initialize figure
         fig = plt.figure(figsize=fsize)
 
-        # Create a GeoAxes in the tile's projection
-        ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs)
+        # Create a GeoAxes
+        ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
 
         # Limit the extent of the map to a small longitude/latitude range
         if extent is None:
@@ -544,8 +540,9 @@ class waveAnalysis(object):
                 [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
             )
 
-        # Add the Stamen data
-        ax.add_image(stamen_terrain, zoom)
+        # Add map elements
+        ax.set_facecolor(cfeature.COLORS['water'])
+        ax.add_feature(cfeature.LAND)
         ax.coastlines(resolution="10m")
 
         # Cyclone track
@@ -674,21 +671,18 @@ class waveAnalysis(object):
 
         Note:
             This function relies on **cartopy** and **matplotlib** libraries.
-            We use cartopy’s ability to draw map tiles which are downloaded on
-            demand from the **Stamen tile server**.
 
         Todo:
             There are some plotting problems for dataset spanning beyond the 180
             degree meridian that will need to be fixed.
         """
 
-        # Create a Stamen terrain background instance.
-        stamen_terrain = cimgt.Stamen("terrain-background")
-
+        # Initialize figure
         fig = plt.figure(figsize=fsize)
 
-        # Create a GeoAxes in the tile's projection.
-        ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs)
+        # Create a GeoAxes
+        ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
+        
         # Limit the extent of the map to a small longitude/latitude range
         if extent is None:
             ax.set_extent(
@@ -700,10 +694,11 @@ class waveAnalysis(object):
                 [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
             )
 
-        # Add the Stamen data
-        ax.add_image(stamen_terrain, zoom)
-
+        # Add map elements
         ax.set_title(title)
+
+        ax.set_facecolor(cfeature.COLORS['water'])
+        ax.add_feature(cfeature.LAND)
         ax.coastlines(resolution="10m")
 
         ax.scatter(
@@ -1364,8 +1359,6 @@ class waveAnalysis(object):
 
         Note:
             This function relies on **cartopy** and **matplotlib** libraries.
-            We use cartopy’s ability to draw map tiles which are downloaded on
-            demand from the **Stamen tile server**.
 
         Todo:
             There are some plotting problems for dataset spanning beyond the
@@ -1386,8 +1379,6 @@ class waveAnalysis(object):
                              close2Track(radius=2., dtmax=6) function before."
             )
 
-        # Create a Stamen terrain background instance.
-        stamen_terrain = cimgt.Stamen("terrain-background")
         unill = self.cyclone_data[["clat", "clon", "date"]]
         unill = unill.drop_duplicates()
 
@@ -1412,7 +1403,7 @@ class waveAnalysis(object):
                 print("")
 
             fig = plt.figure(figsize=fsize)
-            ax = fig.add_subplot(1, 1, 1, projection=stamen_terrain.crs)
+            ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
             if extent is None:
                 ax.set_extent(
                     [self.lonmin, self.lonmax, self.latmin, self.latmax],
@@ -1423,7 +1414,8 @@ class waveAnalysis(object):
                     [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
                 )
 
-            ax.add_image(stamen_terrain, zoom)
+            ax.set_facecolor(cfeature.COLORS['water'])
+            ax.add_feature(cfeature.LAND)
             ax.coastlines(resolution="10m")
 
             geodetic_transform = ccrs.PlateCarree()._as_mpl_transform(ax)
