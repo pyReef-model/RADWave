@@ -28,6 +28,21 @@ try:
     import cartopy.crs as ccrs
     import cartopy.feature as cfeature  
     from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+    LAND_10m = cfeature.NaturalEarthFeature(
+        'physical', 'land', '10m',
+        edgecolor='black',
+        facecolor=cfeature.COLORS['land']
+    )
+    OCEAN = cfeature.NaturalEarthFeature(
+        'physical', 'ocean', '10m',
+        edgecolor='none',
+        facecolor=cfeature.COLORS['water']
+    )
+    COAST_10m = cfeature.NaturalEarthFeature(
+        'physical', 'coastline', '10m',
+        edgecolor='black',
+        facecolor='none'
+    )
 except ImportError:
     print("cartopy is required and needs to be installed via pip")
     pass
@@ -541,9 +556,13 @@ class waveAnalysis(object):
             )
 
         # Add map elements
-        ax.set_facecolor(cfeature.COLORS['water'])
-        ax.add_feature(cfeature.LAND)
-        ax.coastlines(resolution="10m")
+        # ax.set_facecolor(cfeature.COLORS['water'])
+        # ax.add_feature(cfeature.LAND)
+        # ax.coastlines(resolution="10m")
+        ax.add_feature(LAND_10m)
+        ax.add_feature(OCEAN)
+        ax.add_feature(COAST_10m)
+        # l = ax.stock_img()
 
         # Cyclone track
         clon = self.cyclone["lon"].to_numpy()
@@ -556,7 +575,7 @@ class waveAnalysis(object):
                 linewidth=3,
                 alpha=0.5,
                 transform=ccrs.PlateCarree(),
-                zorder=1,
+                zorder=10,
             )
 
         plt.scatter(
@@ -569,7 +588,7 @@ class waveAnalysis(object):
             linewidth=0.5,
             alpha=1,
             transform=ccrs.PlateCarree(),
-            zorder=5,
+            zorder=11,
         )
 
         geodetic_transform = ccrs.PlateCarree()._as_mpl_transform(ax)
@@ -609,7 +628,7 @@ class waveAnalysis(object):
                 horizontalalignment="center",
                 transform=text_transform,
                 bbox=dict(facecolor="white", alpha=0.9, boxstyle="round"),
-                zorder=10,
+                zorder=12,
             )
 
             plt.scatter(
@@ -622,7 +641,7 @@ class waveAnalysis(object):
                 linewidth=0.5,
                 alpha=1,
                 transform=ccrs.PlateCarree(),
-                zorder=10,
+                zorder=12,
             )
 
         gl = ax.gridlines(
@@ -676,7 +695,7 @@ class waveAnalysis(object):
             There are some plotting problems for dataset spanning beyond the 180
             degree meridian that will need to be fixed.
         """
-
+        
         # Initialize figure
         fig = plt.figure(figsize=fsize)
 
@@ -697,9 +716,12 @@ class waveAnalysis(object):
         # Add map elements
         ax.set_title(title)
 
-        ax.set_facecolor(cfeature.COLORS['water'])
-        ax.add_feature(cfeature.LAND)
-        ax.coastlines(resolution="10m")
+        # ax.set_facecolor(cfeature.COLORS['water'])
+        # ax.add_feature(cfeature.LAND)
+        # ax.coastlines(resolution="10m")
+        ax.add_feature(LAND_10m)
+        ax.add_feature(OCEAN)
+        ax.add_feature(COAST_10m)
 
         ax.scatter(
             [self.lon],
@@ -711,6 +733,7 @@ class waveAnalysis(object):
             linewidth=0.5,
             alpha=0.7,
             transform=ccrs.PlateCarree(),
+            zorder=10,
         )
 
         # Use the cartopy interface to create a matplotlib transform object
@@ -730,7 +753,7 @@ class waveAnalysis(object):
                     linewidth=3,
                     alpha=1.0,
                     transform=ccrs.PlateCarree(),
-                    zorder=1,
+                    zorder=11,
                 )
 
         # Add a marker for a given city.
@@ -1414,9 +1437,12 @@ class waveAnalysis(object):
                     [extent[0], extent[1], extent[2], extent[3]], crs=ccrs.PlateCarree()
                 )
 
-            ax.set_facecolor(cfeature.COLORS['water'])
-            ax.add_feature(cfeature.LAND)
-            ax.coastlines(resolution="10m")
+            # ax.set_facecolor(cfeature.COLORS['water'])
+            # ax.add_feature(cfeature.LAND)
+            # ax.coastlines(resolution="10m")
+            ax.add_feature(LAND_10m)
+            ax.add_feature(OCEAN)
+            ax.add_feature(COAST_10m)
 
             geodetic_transform = ccrs.PlateCarree()._as_mpl_transform(ax)
             text_transform = offset_copy(geodetic_transform, units="dots", x=-12)
@@ -1432,7 +1458,7 @@ class waveAnalysis(object):
                     linewidth=1,
                     alpha=1.0,
                     transform=ccrs.PlateCarree(),
-                    zorder=1,
+                    zorder=4,
                 )
             plt.scatter(
                 [clon],
@@ -1634,11 +1660,11 @@ class waveAnalysis(object):
             tdf = tdf.drop(tdf[tdf.lon > lonlat[1]].index)
             tdf = tdf.drop(tdf[tdf.lat < lonlat[2]].index)
             tdf = tdf.drop(tdf[tdf.lat > lonlat[3]].index)
-            tdf = tdf.groupby(["year", "month"])[[series]].apply(np.mean).reset_index()
+            tdf = tdf.groupby(["year", "month"])[[series]].mean().reset_index()
         else:
             tdf = (
                 self.timeseries.groupby(["year", "month"])[[series]]
-                .apply(np.mean)
+                .mean()
                 .reset_index()
             )
 
