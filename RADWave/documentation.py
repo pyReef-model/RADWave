@@ -15,8 +15,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with RADWave.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import pkg_resources as _pkg_resources
-from distutils import dir_util as _dir_util
+# import pkg_resources as _pkg_resources
+# from distutils import dir_util as _dir_util
 
 
 def install_documentation(path="./RADWave-Notebooks"):
@@ -30,8 +30,8 @@ def install_documentation(path="./RADWave-Notebooks"):
 
     # Question - overwrite or not ? shutils fails if directory exists.
 
-    Notebooks_Path = _pkg_resources.resource_filename('RADWave', 'Notebooks')
+    # Notebooks_Path = _pkg_resources.resource_filename('RADWave', 'Notebooks')
 
-    _dir_util.copy_tree(Notebooks_Path, path, preserve_mode=1,
-                        preserve_times=1, preserve_symlinks=1,
-                        update=0, verbose=1, dry_run=0)
+    # _dir_util.copy_tree(Notebooks_Path, path, preserve_mode=1,
+    #                     preserve_times=1, preserve_symlinks=1,
+    #                     update=0, verbose=1, dry_run=0)
